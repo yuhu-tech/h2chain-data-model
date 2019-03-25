@@ -1,0 +1,6 @@
+endpoint: http://localhost:5566
+datamodel: ../database/hrdatamodel.graphql
+
+generate:
+  - generator: javascript-client
+    output: ./src/generated/prisma-client/
