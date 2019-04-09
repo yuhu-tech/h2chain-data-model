@@ -9,8 +9,8 @@ type User {
 type Profile {
   id: ID! @unique
   phone: String! @unique
-  cover: String
-  name: String
+  companyname: String
+  introduction:String
   user: User!
 }
 

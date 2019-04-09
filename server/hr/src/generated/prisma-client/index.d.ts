@@ -151,10 +151,10 @@ export type ProfileOrderByInput =
   | "id_DESC"
   | "phone_ASC"
   | "phone_DESC"
-  | "cover_ASC"
-  | "cover_DESC"
-  | "name_ASC"
-  | "name_DESC"
+  | "companyname_ASC"
+  | "companyname_DESC"
+  | "introduction_ASC"
+  | "introduction_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -222,34 +222,34 @@ export interface ProfileWhereInput {
   phone_not_starts_with?: String;
   phone_ends_with?: String;
   phone_not_ends_with?: String;
-  cover?: String;
-  cover_not?: String;
-  cover_in?: String[] | String;
-  cover_not_in?: String[] | String;
-  cover_lt?: String;
-  cover_lte?: String;
-  cover_gt?: String;
-  cover_gte?: String;
-  cover_contains?: String;
-  cover_not_contains?: String;
-  cover_starts_with?: String;
-  cover_not_starts_with?: String;
-  cover_ends_with?: String;
-  cover_not_ends_with?: String;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+  companyname?: String;
+  companyname_not?: String;
+  companyname_in?: String[] | String;
+  companyname_not_in?: String[] | String;
+  companyname_lt?: String;
+  companyname_lte?: String;
+  companyname_gt?: String;
+  companyname_gte?: String;
+  companyname_contains?: String;
+  companyname_not_contains?: String;
+  companyname_starts_with?: String;
+  companyname_not_starts_with?: String;
+  companyname_ends_with?: String;
+  companyname_not_ends_with?: String;
+  introduction?: String;
+  introduction_not?: String;
+  introduction_in?: String[] | String;
+  introduction_not_in?: String[] | String;
+  introduction_lt?: String;
+  introduction_lte?: String;
+  introduction_gt?: String;
+  introduction_gte?: String;
+  introduction_contains?: String;
+  introduction_not_contains?: String;
+  introduction_starts_with?: String;
+  introduction_not_starts_with?: String;
+  introduction_ends_with?: String;
+  introduction_not_ends_with?: String;
   user?: UserWhereInput;
   AND?: ProfileWhereInput[] | ProfileWhereInput;
   OR?: ProfileWhereInput[] | ProfileWhereInput;
@@ -258,14 +258,14 @@ export interface ProfileWhereInput {
 
 export interface ProfileCreateWithoutUserInput {
   phone: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
 }
 
 export interface ProfileUpdateManyMutationInput {
   phone?: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
 }
 
 export interface ProfileCreateOneWithoutUserInput {
@@ -296,8 +296,8 @@ export interface ProfileUpsertWithoutUserInput {
 
 export interface ProfileCreateInput {
   phone: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
   user: UserCreateOneWithoutProfileInput;
 }
 
@@ -390,8 +390,8 @@ export interface UserUpdateOneRequiredWithoutProfileInput {
 
 export interface ProfileUpdateInput {
   phone?: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
   user?: UserUpdateOneRequiredWithoutProfileInput;
 }
 
@@ -424,8 +424,8 @@ export interface ProfileUpdateOneWithoutUserInput {
 
 export interface ProfileUpdateWithoutUserDataInput {
   phone?: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -524,8 +524,8 @@ export interface BatchPayloadSubscription
 export interface ProfilePreviousValues {
   id: ID_Output;
   phone: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
 }
 
 export interface ProfilePreviousValuesPromise
@@ -533,8 +533,8 @@ export interface ProfilePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   phone: () => Promise<String>;
-  cover: () => Promise<String>;
-  name: () => Promise<String>;
+  companyname: () => Promise<String>;
+  introduction: () => Promise<String>;
 }
 
 export interface ProfilePreviousValuesSubscription
@@ -542,8 +542,8 @@ export interface ProfilePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   phone: () => Promise<AsyncIterator<String>>;
-  cover: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
+  companyname: () => Promise<AsyncIterator<String>>;
+  introduction: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ProfileSubscriptionPayload {
@@ -675,15 +675,15 @@ export interface AggregateProfileSubscription
 export interface Profile {
   id: ID_Output;
   phone: String;
-  cover?: String;
-  name?: String;
+  companyname?: String;
+  introduction?: String;
 }
 
 export interface ProfilePromise extends Promise<Profile>, Fragmentable {
   id: () => Promise<ID_Output>;
   phone: () => Promise<String>;
-  cover: () => Promise<String>;
-  name: () => Promise<String>;
+  companyname: () => Promise<String>;
+  introduction: () => Promise<String>;
   user: <T = UserPromise>() => T;
 }
 
@@ -692,8 +692,8 @@ export interface ProfileSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   phone: () => Promise<AsyncIterator<String>>;
-  cover: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
+  companyname: () => Promise<AsyncIterator<String>>;
+  introduction: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
 }
 

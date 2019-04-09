@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateProfile {
+/* GraphQL */ `type AggregateOccupation {
+  count: Int!
+}
+
+type AggregateProfile {
   count: Int!
 }
 
@@ -18,6 +22,12 @@ type BatchPayload {
 scalar Long
 
 type Mutation {
+  createOccupation(data: OccupationCreateInput!): Occupation!
+  updateOccupation(data: OccupationUpdateInput!, where: OccupationWhereUniqueInput!): Occupation
+  updateManyOccupations(data: OccupationUpdateManyMutationInput!, where: OccupationWhereInput): BatchPayload!
+  upsertOccupation(where: OccupationWhereUniqueInput!, create: OccupationCreateInput!, update: OccupationUpdateInput!): Occupation!
+  deleteOccupation(where: OccupationWhereUniqueInput!): Occupation
+  deleteManyOccupations(where: OccupationWhereInput): BatchPayload!
   createProfile(data: ProfileCreateInput!): Profile!
   updateProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
   updateManyProfiles(data: ProfileUpdateManyMutationInput!, where: ProfileWhereInput): BatchPayload!
@@ -42,6 +52,98 @@ interface Node {
   id: ID!
 }
 
+type Occupation {
+  id: ID!
+  occupations: [String!]!
+}
+
+type OccupationConnection {
+  pageInfo: PageInfo!
+  edges: [OccupationEdge]!
+  aggregate: AggregateOccupation!
+}
+
+input OccupationCreateInput {
+  occupations: OccupationCreateoccupationsInput
+}
+
+input OccupationCreateoccupationsInput {
+  set: [String!]
+}
+
+type OccupationEdge {
+  node: Occupation!
+  cursor: String!
+}
+
+enum OccupationOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type OccupationPreviousValues {
+  id: ID!
+  occupations: [String!]!
+}
+
+type OccupationSubscriptionPayload {
+  mutation: MutationType!
+  node: Occupation
+  updatedFields: [String!]
+  previousValues: OccupationPreviousValues
+}
+
+input OccupationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: OccupationWhereInput
+  AND: [OccupationSubscriptionWhereInput!]
+  OR: [OccupationSubscriptionWhereInput!]
+  NOT: [OccupationSubscriptionWhereInput!]
+}
+
+input OccupationUpdateInput {
+  occupations: OccupationUpdateoccupationsInput
+}
+
+input OccupationUpdateManyMutationInput {
+  occupations: OccupationUpdateoccupationsInput
+}
+
+input OccupationUpdateoccupationsInput {
+  set: [String!]
+}
+
+input OccupationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [OccupationWhereInput!]
+  OR: [OccupationWhereInput!]
+  NOT: [OccupationWhereInput!]
+}
+
+input OccupationWhereUniqueInput {
+  id: ID
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -51,9 +153,14 @@ type PageInfo {
 
 type Profile {
   id: ID!
+  cover: [String!]!
   phone: String!
-  cover: String
-  name: String
+  name: String!
+  occupation: String!
+  latitude: Float!
+  longitude: Float!
+  address: String!
+  introduction: String!
   user: User!
 }
 
@@ -63,10 +170,19 @@ type ProfileConnection {
   aggregate: AggregateProfile!
 }
 
+input ProfileCreatecoverInput {
+  set: [String!]
+}
+
 input ProfileCreateInput {
+  cover: ProfileCreatecoverInput
   phone: String!
-  cover: String
-  name: String
+  name: String!
+  occupation: String!
+  latitude: Float!
+  longitude: Float!
+  address: String!
+  introduction: String!
   user: UserCreateOneWithoutProfileInput!
 }
 
@@ -76,9 +192,14 @@ input ProfileCreateOneWithoutUserInput {
 }
 
 input ProfileCreateWithoutUserInput {
+  cover: ProfileCreatecoverInput
   phone: String!
-  cover: String
-  name: String
+  name: String!
+  occupation: String!
+  latitude: Float!
+  longitude: Float!
+  address: String!
+  introduction: String!
 }
 
 type ProfileEdge {
@@ -91,10 +212,18 @@ enum ProfileOrderByInput {
   id_DESC
   phone_ASC
   phone_DESC
-  cover_ASC
-  cover_DESC
   name_ASC
   name_DESC
+  occupation_ASC
+  occupation_DESC
+  latitude_ASC
+  latitude_DESC
+  longitude_ASC
+  longitude_DESC
+  address_ASC
+  address_DESC
+  introduction_ASC
+  introduction_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -103,9 +232,14 @@ enum ProfileOrderByInput {
 
 type ProfilePreviousValues {
   id: ID!
+  cover: [String!]!
   phone: String!
-  cover: String
-  name: String
+  name: String!
+  occupation: String!
+  latitude: Float!
+  longitude: Float!
+  address: String!
+  introduction: String!
 }
 
 type ProfileSubscriptionPayload {
@@ -126,17 +260,31 @@ input ProfileSubscriptionWhereInput {
   NOT: [ProfileSubscriptionWhereInput!]
 }
 
+input ProfileUpdatecoverInput {
+  set: [String!]
+}
+
 input ProfileUpdateInput {
+  cover: ProfileUpdatecoverInput
   phone: String
-  cover: String
   name: String
+  occupation: String
+  latitude: Float
+  longitude: Float
+  address: String
+  introduction: String
   user: UserUpdateOneRequiredWithoutProfileInput
 }
 
 input ProfileUpdateManyMutationInput {
+  cover: ProfileUpdatecoverInput
   phone: String
-  cover: String
   name: String
+  occupation: String
+  latitude: Float
+  longitude: Float
+  address: String
+  introduction: String
 }
 
 input ProfileUpdateOneWithoutUserInput {
@@ -149,9 +297,14 @@ input ProfileUpdateOneWithoutUserInput {
 }
 
 input ProfileUpdateWithoutUserDataInput {
+  cover: ProfileUpdatecoverInput
   phone: String
-  cover: String
   name: String
+  occupation: String
+  latitude: Float
+  longitude: Float
+  address: String
+  introduction: String
 }
 
 input ProfileUpsertWithoutUserInput {
@@ -188,20 +341,6 @@ input ProfileWhereInput {
   phone_not_starts_with: String
   phone_ends_with: String
   phone_not_ends_with: String
-  cover: String
-  cover_not: String
-  cover_in: [String!]
-  cover_not_in: [String!]
-  cover_lt: String
-  cover_lte: String
-  cover_gt: String
-  cover_gte: String
-  cover_contains: String
-  cover_not_contains: String
-  cover_starts_with: String
-  cover_not_starts_with: String
-  cover_ends_with: String
-  cover_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -216,6 +355,64 @@ input ProfileWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  occupation: String
+  occupation_not: String
+  occupation_in: [String!]
+  occupation_not_in: [String!]
+  occupation_lt: String
+  occupation_lte: String
+  occupation_gt: String
+  occupation_gte: String
+  occupation_contains: String
+  occupation_not_contains: String
+  occupation_starts_with: String
+  occupation_not_starts_with: String
+  occupation_ends_with: String
+  occupation_not_ends_with: String
+  latitude: Float
+  latitude_not: Float
+  latitude_in: [Float!]
+  latitude_not_in: [Float!]
+  latitude_lt: Float
+  latitude_lte: Float
+  latitude_gt: Float
+  latitude_gte: Float
+  longitude: Float
+  longitude_not: Float
+  longitude_in: [Float!]
+  longitude_not_in: [Float!]
+  longitude_lt: Float
+  longitude_lte: Float
+  longitude_gt: Float
+  longitude_gte: Float
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  introduction: String
+  introduction_not: String
+  introduction_in: [String!]
+  introduction_not_in: [String!]
+  introduction_lt: String
+  introduction_lte: String
+  introduction_gt: String
+  introduction_gte: String
+  introduction_contains: String
+  introduction_not_contains: String
+  introduction_starts_with: String
+  introduction_not_starts_with: String
+  introduction_ends_with: String
+  introduction_not_ends_with: String
   user: UserWhereInput
   AND: [ProfileWhereInput!]
   OR: [ProfileWhereInput!]
@@ -224,10 +421,12 @@ input ProfileWhereInput {
 
 input ProfileWhereUniqueInput {
   id: ID
-  phone: String
 }
 
 type Query {
+  occupation(where: OccupationWhereUniqueInput!): Occupation
+  occupations(where: OccupationWhereInput, orderBy: OccupationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Occupation]!
+  occupationsConnection(where: OccupationWhereInput, orderBy: OccupationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OccupationConnection!
   profile(where: ProfileWhereUniqueInput!): Profile
   profiles(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profile]!
   profilesConnection(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfileConnection!
@@ -238,6 +437,7 @@ type Query {
 }
 
 type Subscription {
+  occupation(where: OccupationSubscriptionWhereInput): OccupationSubscriptionPayload
   profile(where: ProfileSubscriptionWhereInput): ProfileSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }

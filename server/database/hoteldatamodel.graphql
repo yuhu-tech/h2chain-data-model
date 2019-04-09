@@ -6,11 +6,22 @@ type User {
   profile: Profile
 }
 
-type Profile {
+
+type Profile{
   id: ID! @unique
-  phone: String! @unique
-  cover: String
-  name: String
+  cover: [String]!
+  phone: String!
+  name: String!
+  occupation:String!
+  latitude: Float!
+  longitude:Float!
+  address:String!
+  introduction:String!
   user: User!
 }
 
+
+type Occupation{
+  id: ID! @unique
+  occupations:[String]
+}

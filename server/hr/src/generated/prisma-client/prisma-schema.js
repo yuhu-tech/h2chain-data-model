@@ -52,8 +52,8 @@ type PageInfo {
 type Profile {
   id: ID!
   phone: String!
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
   user: User!
 }
 
@@ -65,8 +65,8 @@ type ProfileConnection {
 
 input ProfileCreateInput {
   phone: String!
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
   user: UserCreateOneWithoutProfileInput!
 }
 
@@ -77,8 +77,8 @@ input ProfileCreateOneWithoutUserInput {
 
 input ProfileCreateWithoutUserInput {
   phone: String!
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
 }
 
 type ProfileEdge {
@@ -91,10 +91,10 @@ enum ProfileOrderByInput {
   id_DESC
   phone_ASC
   phone_DESC
-  cover_ASC
-  cover_DESC
-  name_ASC
-  name_DESC
+  companyname_ASC
+  companyname_DESC
+  introduction_ASC
+  introduction_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -104,8 +104,8 @@ enum ProfileOrderByInput {
 type ProfilePreviousValues {
   id: ID!
   phone: String!
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
 }
 
 type ProfileSubscriptionPayload {
@@ -128,15 +128,15 @@ input ProfileSubscriptionWhereInput {
 
 input ProfileUpdateInput {
   phone: String
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
   user: UserUpdateOneRequiredWithoutProfileInput
 }
 
 input ProfileUpdateManyMutationInput {
   phone: String
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
 }
 
 input ProfileUpdateOneWithoutUserInput {
@@ -150,8 +150,8 @@ input ProfileUpdateOneWithoutUserInput {
 
 input ProfileUpdateWithoutUserDataInput {
   phone: String
-  cover: String
-  name: String
+  companyname: String
+  introduction: String
 }
 
 input ProfileUpsertWithoutUserInput {
@@ -188,34 +188,34 @@ input ProfileWhereInput {
   phone_not_starts_with: String
   phone_ends_with: String
   phone_not_ends_with: String
-  cover: String
-  cover_not: String
-  cover_in: [String!]
-  cover_not_in: [String!]
-  cover_lt: String
-  cover_lte: String
-  cover_gt: String
-  cover_gte: String
-  cover_contains: String
-  cover_not_contains: String
-  cover_starts_with: String
-  cover_not_starts_with: String
-  cover_ends_with: String
-  cover_not_ends_with: String
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  companyname: String
+  companyname_not: String
+  companyname_in: [String!]
+  companyname_not_in: [String!]
+  companyname_lt: String
+  companyname_lte: String
+  companyname_gt: String
+  companyname_gte: String
+  companyname_contains: String
+  companyname_not_contains: String
+  companyname_starts_with: String
+  companyname_not_starts_with: String
+  companyname_ends_with: String
+  companyname_not_ends_with: String
+  introduction: String
+  introduction_not: String
+  introduction_in: [String!]
+  introduction_not_in: [String!]
+  introduction_lt: String
+  introduction_lte: String
+  introduction_gt: String
+  introduction_gte: String
+  introduction_contains: String
+  introduction_not_contains: String
+  introduction_starts_with: String
+  introduction_not_starts_with: String
+  introduction_ends_with: String
+  introduction_not_ends_with: String
   user: UserWhereInput
   AND: [ProfileWhereInput!]
   OR: [ProfileWhereInput!]
