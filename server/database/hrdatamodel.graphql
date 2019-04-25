@@ -5,6 +5,7 @@ type User {
   phone: String
   password: String!
   profile : Profile
+  wechat: String
 }
 
 type Profile {

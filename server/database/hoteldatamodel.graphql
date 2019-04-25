@@ -4,6 +4,7 @@ type User {
   email: String! @unique
   password: String!
   profile: Profile
+  wechat: String
 }
 
 

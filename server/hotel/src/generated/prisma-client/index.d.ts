@@ -231,6 +231,8 @@ export type UserOrderByInput =
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
+  | "wechat_ASC"
+  | "wechat_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -266,6 +268,7 @@ export interface UserCreateInput {
   email: String;
   password: String;
   profile?: ProfileCreateOneWithoutUserInput;
+  wechat?: String;
 }
 
 export interface ProfileUpdateInput {
@@ -304,6 +307,7 @@ export interface UserCreateWithoutProfileInput {
   name: String;
   email: String;
   password: String;
+  wechat?: String;
 }
 
 export interface OccupationCreateInput {
@@ -383,6 +387,20 @@ export interface UserWhereInput {
   password_ends_with?: String;
   password_not_ends_with?: String;
   profile?: ProfileWhereInput;
+  wechat?: String;
+  wechat_not?: String;
+  wechat_in?: String[] | String;
+  wechat_not_in?: String[] | String;
+  wechat_lt?: String;
+  wechat_lte?: String;
+  wechat_gt?: String;
+  wechat_gte?: String;
+  wechat_contains?: String;
+  wechat_not_contains?: String;
+  wechat_starts_with?: String;
+  wechat_not_starts_with?: String;
+  wechat_ends_with?: String;
+  wechat_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -413,12 +431,14 @@ export interface UserUpdateInput {
   email?: String;
   password?: String;
   profile?: ProfileUpdateOneWithoutUserInput;
+  wechat?: String;
 }
 
 export interface UserUpdateWithoutProfileDataInput {
   name?: String;
   email?: String;
   password?: String;
+  wechat?: String;
 }
 
 export interface ProfileCreateWithoutUserInput {
@@ -606,6 +626,7 @@ export interface UserUpdateManyMutationInput {
   name?: String;
   email?: String;
   password?: String;
+  wechat?: String;
 }
 
 export interface ProfileCreateOneWithoutUserInput {
@@ -652,6 +673,7 @@ export interface UserPreviousValues {
   name: String;
   email: String;
   password: String;
+  wechat?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -661,6 +683,7 @@ export interface UserPreviousValuesPromise
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  wechat: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -670,6 +693,7 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  wechat: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ProfileEdge {
@@ -761,6 +785,7 @@ export interface User {
   name: String;
   email: String;
   password: String;
+  wechat?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -769,6 +794,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   email: () => Promise<String>;
   password: () => Promise<String>;
   profile: <T = ProfilePromise>() => T;
+  wechat: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -779,6 +805,7 @@ export interface UserSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   profile: <T = ProfileSubscription>() => T;
+  wechat: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PageInfo {

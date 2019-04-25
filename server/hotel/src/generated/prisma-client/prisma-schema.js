@@ -448,6 +448,7 @@ type User {
   email: String!
   password: String!
   profile: Profile
+  wechat: String
 }
 
 type UserConnection {
@@ -461,6 +462,7 @@ input UserCreateInput {
   email: String!
   password: String!
   profile: ProfileCreateOneWithoutUserInput
+  wechat: String
 }
 
 input UserCreateOneWithoutProfileInput {
@@ -472,6 +474,7 @@ input UserCreateWithoutProfileInput {
   name: String!
   email: String!
   password: String!
+  wechat: String
 }
 
 type UserEdge {
@@ -488,6 +491,8 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
+  wechat_ASC
+  wechat_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -499,6 +504,7 @@ type UserPreviousValues {
   name: String!
   email: String!
   password: String!
+  wechat: String
 }
 
 type UserSubscriptionPayload {
@@ -524,12 +530,14 @@ input UserUpdateInput {
   email: String
   password: String
   profile: ProfileUpdateOneWithoutUserInput
+  wechat: String
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
+  wechat: String
 }
 
 input UserUpdateOneRequiredWithoutProfileInput {
@@ -543,6 +551,7 @@ input UserUpdateWithoutProfileDataInput {
   name: String
   email: String
   password: String
+  wechat: String
 }
 
 input UserUpsertWithoutProfileInput {
@@ -608,6 +617,20 @@ input UserWhereInput {
   password_ends_with: String
   password_not_ends_with: String
   profile: ProfileWhereInput
+  wechat: String
+  wechat_not: String
+  wechat_in: [String!]
+  wechat_not_in: [String!]
+  wechat_lt: String
+  wechat_lte: String
+  wechat_gt: String
+  wechat_gte: String
+  wechat_contains: String
+  wechat_not_contains: String
+  wechat_starts_with: String
+  wechat_not_starts_with: String
+  wechat_ends_with: String
+  wechat_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
