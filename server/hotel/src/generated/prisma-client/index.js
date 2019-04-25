@@ -22,4 +22,4 @@ exports.Prisma = prisma_lib_1.makePrismaClientClass({
   models,
   endpoint: `http://localhost:4466`
 });
-exports.prisma = new exports.Prisma();
+exports.prismaHotel = new exports.Prisma();

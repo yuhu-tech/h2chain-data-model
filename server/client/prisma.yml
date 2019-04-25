@@ -1,4 +1,4 @@
-endpoint: http://localhost:6666
+endpoint: http://localhost:3366
 datamodel: ../database/clientdatamodel.graphql
 
 generate:

@@ -9,13 +9,13 @@ var models = [
     embedded: false
   },
   {
-    name: "Profile",
+    name: "Personalmsg",
     embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `http://localhost:6666`
+  endpoint: `http://localhost:3366`
 });
-exports.prisma = new exports.Prisma();
+exports.prismaClient = new exports.Prisma();

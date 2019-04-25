@@ -11,6 +11,14 @@ var models = [
   {
     name: "Profile",
     embedded: false
+  },
+  {
+    name: "Workcontent",
+    embedded: false
+  },
+  {
+    name: "Attention",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
@@ -18,4 +26,4 @@ exports.Prisma = prisma_lib_1.makePrismaClientClass({
   models,
   endpoint: `http://localhost:5566`
 });
-exports.prisma = new exports.Prisma();
+exports.prismaHr = new exports.Prisma();
