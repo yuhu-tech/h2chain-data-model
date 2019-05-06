@@ -1,0 +1,28 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  profile: Profile
+  wechat: String
+}
+
+
+type Profile{
+  id: ID! @unique
+  cover: [String]!
+  phone: String!
+  name: String!
+  occupation:String!
+  latitude: Float!
+  longitude:Float!
+  address:String!
+  introduction:String!
+  user: User!
+}
+
+
+type Occupation{
+  id: ID! @unique
+  occupations:[String]
+}

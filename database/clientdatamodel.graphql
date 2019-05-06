@@ -1,0 +1,20 @@
+type User {
+  id: ID! @unique
+  wechat: String! @unique
+  personalmsg:Personalmsg
+}
+
+type Personalmsg {
+  id: ID! @unique
+  name: String!
+  phonenumber:String!
+  idnumber:String!
+  gender:Int!
+  #1  ==  male and 2 == female
+  height:Int!
+  weight:Int!
+  status:Int!
+  #1 == student and 2 == !student
+  user: User!
+}
+

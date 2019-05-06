@@ -1,0 +1,30 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  phone: String
+  password: String!
+  profile : Profile
+  wechat: String
+}
+
+type Profile {
+  id: ID! @unique
+  phone: String! @unique
+  companyname: String
+  introduction:String
+  user :  User!
+}
+
+
+type Workcontent{
+  id: ID! @unique
+  userid : String!
+  workcontent : String!
+}
+
+type Attention{
+  id: ID! @unique
+  userid: String!
+  attention: String!
+}
