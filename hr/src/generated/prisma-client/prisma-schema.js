@@ -196,6 +196,10 @@ type Profile {
   companyname: String
   introduction: String
   user: User!
+  advisercer: String!
+  adviseradd: String!
+  publickey: String!
+  privatekey: String!
 }
 
 type ProfileConnection {
@@ -209,6 +213,10 @@ input ProfileCreateInput {
   companyname: String
   introduction: String
   user: UserCreateOneWithoutProfileInput!
+  advisercer: String!
+  adviseradd: String!
+  publickey: String!
+  privatekey: String!
 }
 
 input ProfileCreateOneWithoutUserInput {
@@ -220,6 +228,10 @@ input ProfileCreateWithoutUserInput {
   phone: String!
   companyname: String
   introduction: String
+  advisercer: String!
+  adviseradd: String!
+  publickey: String!
+  privatekey: String!
 }
 
 type ProfileEdge {
@@ -236,6 +248,14 @@ enum ProfileOrderByInput {
   companyname_DESC
   introduction_ASC
   introduction_DESC
+  advisercer_ASC
+  advisercer_DESC
+  adviseradd_ASC
+  adviseradd_DESC
+  publickey_ASC
+  publickey_DESC
+  privatekey_ASC
+  privatekey_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -247,6 +267,10 @@ type ProfilePreviousValues {
   phone: String!
   companyname: String
   introduction: String
+  advisercer: String!
+  adviseradd: String!
+  publickey: String!
+  privatekey: String!
 }
 
 type ProfileSubscriptionPayload {
@@ -272,12 +296,20 @@ input ProfileUpdateInput {
   companyname: String
   introduction: String
   user: UserUpdateOneRequiredWithoutProfileInput
+  advisercer: String
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 input ProfileUpdateManyMutationInput {
   phone: String
   companyname: String
   introduction: String
+  advisercer: String
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 input ProfileUpdateOneWithoutUserInput {
@@ -293,6 +325,10 @@ input ProfileUpdateWithoutUserDataInput {
   phone: String
   companyname: String
   introduction: String
+  advisercer: String
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 input ProfileUpsertWithoutUserInput {
@@ -358,6 +394,62 @@ input ProfileWhereInput {
   introduction_ends_with: String
   introduction_not_ends_with: String
   user: UserWhereInput
+  advisercer: String
+  advisercer_not: String
+  advisercer_in: [String!]
+  advisercer_not_in: [String!]
+  advisercer_lt: String
+  advisercer_lte: String
+  advisercer_gt: String
+  advisercer_gte: String
+  advisercer_contains: String
+  advisercer_not_contains: String
+  advisercer_starts_with: String
+  advisercer_not_starts_with: String
+  advisercer_ends_with: String
+  advisercer_not_ends_with: String
+  adviseradd: String
+  adviseradd_not: String
+  adviseradd_in: [String!]
+  adviseradd_not_in: [String!]
+  adviseradd_lt: String
+  adviseradd_lte: String
+  adviseradd_gt: String
+  adviseradd_gte: String
+  adviseradd_contains: String
+  adviseradd_not_contains: String
+  adviseradd_starts_with: String
+  adviseradd_not_starts_with: String
+  adviseradd_ends_with: String
+  adviseradd_not_ends_with: String
+  publickey: String
+  publickey_not: String
+  publickey_in: [String!]
+  publickey_not_in: [String!]
+  publickey_lt: String
+  publickey_lte: String
+  publickey_gt: String
+  publickey_gte: String
+  publickey_contains: String
+  publickey_not_contains: String
+  publickey_starts_with: String
+  publickey_not_starts_with: String
+  publickey_ends_with: String
+  publickey_not_ends_with: String
+  privatekey: String
+  privatekey_not: String
+  privatekey_in: [String!]
+  privatekey_not_in: [String!]
+  privatekey_lt: String
+  privatekey_lte: String
+  privatekey_gt: String
+  privatekey_gte: String
+  privatekey_contains: String
+  privatekey_not_contains: String
+  privatekey_starts_with: String
+  privatekey_not_starts_with: String
+  privatekey_ends_with: String
+  privatekey_not_ends_with: String
   AND: [ProfileWhereInput!]
   OR: [ProfileWhereInput!]
   NOT: [ProfileWhereInput!]

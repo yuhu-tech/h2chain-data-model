@@ -14,6 +14,10 @@ type Profile {
   companyname: String
   introduction:String
   user :  User!
+  advisercer:String!
+  adviseradd:String!
+  publickey:String!
+  privatekey:String!
 }
 
 

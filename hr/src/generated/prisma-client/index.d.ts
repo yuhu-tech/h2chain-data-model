@@ -249,6 +249,14 @@ export type ProfileOrderByInput =
   | "companyname_DESC"
   | "introduction_ASC"
   | "introduction_DESC"
+  | "advisercer_ASC"
+  | "advisercer_DESC"
+  | "adviseradd_ASC"
+  | "adviseradd_DESC"
+  | "publickey_ASC"
+  | "publickey_DESC"
+  | "privatekey_ASC"
+  | "privatekey_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -335,6 +343,10 @@ export interface ProfileCreateInput {
   companyname?: String;
   introduction?: String;
   user: UserCreateOneWithoutProfileInput;
+  advisercer: String;
+  adviseradd: String;
+  publickey: String;
+  privatekey: String;
 }
 
 export type WorkcontentWhereUniqueInput = AtLeastOne<{
@@ -356,6 +368,10 @@ export interface ProfileCreateWithoutUserInput {
   phone: String;
   companyname?: String;
   introduction?: String;
+  advisercer: String;
+  adviseradd: String;
+  publickey: String;
+  privatekey: String;
 }
 
 export type ProfileWhereUniqueInput = AtLeastOne<{
@@ -530,6 +546,10 @@ export interface ProfileUpdateManyMutationInput {
   phone?: String;
   companyname?: String;
   introduction?: String;
+  advisercer?: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export interface ProfileUpsertWithoutUserInput {
@@ -648,6 +668,10 @@ export interface ProfileUpdateInput {
   companyname?: String;
   introduction?: String;
   user?: UserUpdateOneRequiredWithoutProfileInput;
+  advisercer?: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export interface UserUpdateOneRequiredWithoutProfileInput {
@@ -666,6 +690,10 @@ export interface ProfileUpdateWithoutUserDataInput {
   phone?: String;
   companyname?: String;
   introduction?: String;
+  advisercer?: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -734,6 +762,62 @@ export interface ProfileWhereInput {
   introduction_ends_with?: String;
   introduction_not_ends_with?: String;
   user?: UserWhereInput;
+  advisercer?: String;
+  advisercer_not?: String;
+  advisercer_in?: String[] | String;
+  advisercer_not_in?: String[] | String;
+  advisercer_lt?: String;
+  advisercer_lte?: String;
+  advisercer_gt?: String;
+  advisercer_gte?: String;
+  advisercer_contains?: String;
+  advisercer_not_contains?: String;
+  advisercer_starts_with?: String;
+  advisercer_not_starts_with?: String;
+  advisercer_ends_with?: String;
+  advisercer_not_ends_with?: String;
+  adviseradd?: String;
+  adviseradd_not?: String;
+  adviseradd_in?: String[] | String;
+  adviseradd_not_in?: String[] | String;
+  adviseradd_lt?: String;
+  adviseradd_lte?: String;
+  adviseradd_gt?: String;
+  adviseradd_gte?: String;
+  adviseradd_contains?: String;
+  adviseradd_not_contains?: String;
+  adviseradd_starts_with?: String;
+  adviseradd_not_starts_with?: String;
+  adviseradd_ends_with?: String;
+  adviseradd_not_ends_with?: String;
+  publickey?: String;
+  publickey_not?: String;
+  publickey_in?: String[] | String;
+  publickey_not_in?: String[] | String;
+  publickey_lt?: String;
+  publickey_lte?: String;
+  publickey_gt?: String;
+  publickey_gte?: String;
+  publickey_contains?: String;
+  publickey_not_contains?: String;
+  publickey_starts_with?: String;
+  publickey_not_starts_with?: String;
+  publickey_ends_with?: String;
+  publickey_not_ends_with?: String;
+  privatekey?: String;
+  privatekey_not?: String;
+  privatekey_in?: String[] | String;
+  privatekey_not_in?: String[] | String;
+  privatekey_lt?: String;
+  privatekey_lte?: String;
+  privatekey_gt?: String;
+  privatekey_gte?: String;
+  privatekey_contains?: String;
+  privatekey_not_contains?: String;
+  privatekey_starts_with?: String;
+  privatekey_not_starts_with?: String;
+  privatekey_ends_with?: String;
+  privatekey_not_ends_with?: String;
   AND?: ProfileWhereInput[] | ProfileWhereInput;
   OR?: ProfileWhereInput[] | ProfileWhereInput;
   NOT?: ProfileWhereInput[] | ProfileWhereInput;
@@ -872,6 +956,10 @@ export interface Profile {
   phone: String;
   companyname?: String;
   introduction?: String;
+  advisercer: String;
+  adviseradd: String;
+  publickey: String;
+  privatekey: String;
 }
 
 export interface ProfilePromise extends Promise<Profile>, Fragmentable {
@@ -880,6 +968,10 @@ export interface ProfilePromise extends Promise<Profile>, Fragmentable {
   companyname: () => Promise<String>;
   introduction: () => Promise<String>;
   user: <T = UserPromise>() => T;
+  advisercer: () => Promise<String>;
+  adviseradd: () => Promise<String>;
+  publickey: () => Promise<String>;
+  privatekey: () => Promise<String>;
 }
 
 export interface ProfileSubscription
@@ -890,6 +982,10 @@ export interface ProfileSubscription
   companyname: () => Promise<AsyncIterator<String>>;
   introduction: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
+  advisercer: () => Promise<AsyncIterator<String>>;
+  adviseradd: () => Promise<AsyncIterator<String>>;
+  publickey: () => Promise<AsyncIterator<String>>;
+  privatekey: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateWorkcontent {
@@ -1289,6 +1385,10 @@ export interface ProfilePreviousValues {
   phone: String;
   companyname?: String;
   introduction?: String;
+  advisercer: String;
+  adviseradd: String;
+  publickey: String;
+  privatekey: String;
 }
 
 export interface ProfilePreviousValuesPromise
@@ -1298,6 +1398,10 @@ export interface ProfilePreviousValuesPromise
   phone: () => Promise<String>;
   companyname: () => Promise<String>;
   introduction: () => Promise<String>;
+  advisercer: () => Promise<String>;
+  adviseradd: () => Promise<String>;
+  publickey: () => Promise<String>;
+  privatekey: () => Promise<String>;
 }
 
 export interface ProfilePreviousValuesSubscription
@@ -1307,6 +1411,10 @@ export interface ProfilePreviousValuesSubscription
   phone: () => Promise<AsyncIterator<String>>;
   companyname: () => Promise<AsyncIterator<String>>;
   introduction: () => Promise<AsyncIterator<String>>;
+  advisercer: () => Promise<AsyncIterator<String>>;
+  adviseradd: () => Promise<AsyncIterator<String>>;
+  publickey: () => Promise<AsyncIterator<String>>;
+  privatekey: () => Promise<AsyncIterator<String>>;
 }
 
 /*

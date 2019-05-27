@@ -14,8 +14,11 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  balance: (where?: BalanceWhereInput) => Promise<boolean>;
+  contract: (where?: ContractWhereInput) => Promise<boolean>;
   occupation: (where?: OccupationWhereInput) => Promise<boolean>;
   profile: (where?: ProfileWhereInput) => Promise<boolean>;
+  tx: (where?: TxWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -38,6 +41,52 @@ export interface Prisma {
    * Queries
    */
 
+  balance: (where: BalanceWhereUniqueInput) => BalancePromise;
+  balances: (
+    args?: {
+      where?: BalanceWhereInput;
+      orderBy?: BalanceOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Balance>;
+  balancesConnection: (
+    args?: {
+      where?: BalanceWhereInput;
+      orderBy?: BalanceOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => BalanceConnectionPromise;
+  contract: (where: ContractWhereUniqueInput) => ContractPromise;
+  contracts: (
+    args?: {
+      where?: ContractWhereInput;
+      orderBy?: ContractOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Contract>;
+  contractsConnection: (
+    args?: {
+      where?: ContractWhereInput;
+      orderBy?: ContractOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ContractConnectionPromise;
   occupation: (where: OccupationWhereUniqueInput) => OccupationPromise;
   occupations: (
     args?: {
@@ -84,6 +133,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => ProfileConnectionPromise;
+  tx: (where: TxWhereUniqueInput) => TxPromise;
+  txes: (
+    args?: {
+      where?: TxWhereInput;
+      orderBy?: TxOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Tx>;
+  txesConnection: (
+    args?: {
+      where?: TxWhereInput;
+      orderBy?: TxOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => TxConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -113,6 +185,38 @@ export interface Prisma {
    * Mutations
    */
 
+  createBalance: (data: BalanceCreateInput) => BalancePromise;
+  updateBalance: (
+    args: { data: BalanceUpdateInput; where: BalanceWhereUniqueInput }
+  ) => BalancePromise;
+  updateManyBalances: (
+    args: { data: BalanceUpdateManyMutationInput; where?: BalanceWhereInput }
+  ) => BatchPayloadPromise;
+  upsertBalance: (
+    args: {
+      where: BalanceWhereUniqueInput;
+      create: BalanceCreateInput;
+      update: BalanceUpdateInput;
+    }
+  ) => BalancePromise;
+  deleteBalance: (where: BalanceWhereUniqueInput) => BalancePromise;
+  deleteManyBalances: (where?: BalanceWhereInput) => BatchPayloadPromise;
+  createContract: (data: ContractCreateInput) => ContractPromise;
+  updateContract: (
+    args: { data: ContractUpdateInput; where: ContractWhereUniqueInput }
+  ) => ContractPromise;
+  updateManyContracts: (
+    args: { data: ContractUpdateManyMutationInput; where?: ContractWhereInput }
+  ) => BatchPayloadPromise;
+  upsertContract: (
+    args: {
+      where: ContractWhereUniqueInput;
+      create: ContractCreateInput;
+      update: ContractUpdateInput;
+    }
+  ) => ContractPromise;
+  deleteContract: (where: ContractWhereUniqueInput) => ContractPromise;
+  deleteManyContracts: (where?: ContractWhereInput) => BatchPayloadPromise;
   createOccupation: (data: OccupationCreateInput) => OccupationPromise;
   updateOccupation: (
     args: { data: OccupationUpdateInput; where: OccupationWhereUniqueInput }
@@ -148,6 +252,22 @@ export interface Prisma {
   ) => ProfilePromise;
   deleteProfile: (where: ProfileWhereUniqueInput) => ProfilePromise;
   deleteManyProfiles: (where?: ProfileWhereInput) => BatchPayloadPromise;
+  createTx: (data: TxCreateInput) => TxPromise;
+  updateTx: (
+    args: { data: TxUpdateInput; where: TxWhereUniqueInput }
+  ) => TxPromise;
+  updateManyTxes: (
+    args: { data: TxUpdateManyMutationInput; where?: TxWhereInput }
+  ) => BatchPayloadPromise;
+  upsertTx: (
+    args: {
+      where: TxWhereUniqueInput;
+      create: TxCreateInput;
+      update: TxUpdateInput;
+    }
+  ) => TxPromise;
+  deleteTx: (where: TxWhereUniqueInput) => TxPromise;
+  deleteManyTxes: (where?: TxWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -173,12 +293,19 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  balance: (
+    where?: BalanceSubscriptionWhereInput
+  ) => BalanceSubscriptionPayloadSubscription;
+  contract: (
+    where?: ContractSubscriptionWhereInput
+  ) => ContractSubscriptionPayloadSubscription;
   occupation: (
     where?: OccupationSubscriptionWhereInput
   ) => OccupationSubscriptionPayloadSubscription;
   profile: (
     where?: ProfileSubscriptionWhereInput
   ) => ProfileSubscriptionPayloadSubscription;
+  tx: (where?: TxSubscriptionWhereInput) => TxSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -192,9 +319,49 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type ContractOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "contractaddress_ASC"
+  | "contractaddress_DESC"
+  | "key_ASC"
+  | "key_DESC"
+  | "date_ASC"
+  | "date_DESC"
+  | "occupation_ASC"
+  | "occupation_DESC"
+  | "blocknumber_ASC"
+  | "blocknumber_DESC"
+  | "hash_ASC"
+  | "hash_DESC"
+  | "hotelid_ASC"
+  | "hotelid_DESC"
+  | "adviserid_ASC"
+  | "adviserid_DESC"
+  | "ptid_ASC"
+  | "ptid_DESC"
+  | "orderid_ASC"
+  | "orderid_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
 export type OccupationOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type BalanceOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "xuid_ASC"
+  | "xuid_DESC"
+  | "balance_ASC"
+  | "balance_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -217,6 +384,34 @@ export type ProfileOrderByInput =
   | "address_DESC"
   | "introduction_ASC"
   | "introduction_DESC"
+  | "hotelcer_ASC"
+  | "hotelcer_DESC"
+  | "hoteladd_ASC"
+  | "hoteladd_DESC"
+  | "privatekey_ASC"
+  | "privatekey_DESC"
+  | "publickey_ASC"
+  | "publickey_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type TxOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "from_ASC"
+  | "from_DESC"
+  | "to_ASC"
+  | "to_DESC"
+  | "value_ASC"
+  | "value_DESC"
+  | "hash_ASC"
+  | "hash_DESC"
+  | "timestamp_ASC"
+  | "timestamp_DESC"
+  | "reason_ASC"
+  | "reason_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -240,48 +435,57 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface OccupationUpdateoccupationsInput {
-  set?: String[] | String;
+export interface BalanceUpdateManyMutationInput {
+  xuid?: String;
+  balance?: Int;
 }
 
-export type OccupationWhereUniqueInput = AtLeastOne<{
+export type BalanceWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface OccupationUpdateManyMutationInput {
-  occupations?: OccupationUpdateoccupationsInput;
+export interface TxUpdateInput {
+  from?: String;
+  to?: String;
+  value?: Int;
+  hash?: String;
+  timestamp?: Int;
+  reason?: String;
 }
 
-export interface ProfileSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ProfileWhereInput;
-  AND?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
-  OR?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
-  NOT?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+export interface OccupationCreateoccupationsInput {
+  set?: String[] | String;
 }
 
-export interface UserCreateInput {
-  name: String;
-  email: String;
-  password: String;
-  profile?: ProfileCreateOneWithoutUserInput;
-  wechat?: String;
+export interface TxCreateInput {
+  from: String;
+  to: String;
+  value: Int;
+  hash: String;
+  timestamp: Int;
+  reason?: String;
 }
 
-export interface ProfileUpdateInput {
-  cover?: ProfileUpdatecoverInput;
-  phone?: String;
-  name?: String;
-  occupation?: String;
-  latitude?: Float;
-  longitude?: Float;
-  address?: String;
-  introduction?: String;
-  user?: UserUpdateOneRequiredWithoutProfileInput;
+export interface ContractUpdateInput {
+  contractaddress?: String;
+  key?: String;
+  date?: Int;
+  occupation?: Int;
+  blocknumber?: Int;
+  hash?: String;
+  hotelid?: String;
+  adviserid?: String;
+  ptid?: String;
+  orderid?: String;
 }
+
+export type TxWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type ContractWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface ProfileUpdateManyMutationInput {
   cover?: ProfileUpdatecoverInput;
@@ -292,44 +496,13 @@ export interface ProfileUpdateManyMutationInput {
   longitude?: Float;
   address?: String;
   introduction?: String;
+  hotelcer?: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
-export type ProfileWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ProfileUpsertWithoutUserInput {
-  update: ProfileUpdateWithoutUserDataInput;
-  create: ProfileCreateWithoutUserInput;
-}
-
-export interface UserCreateWithoutProfileInput {
-  name: String;
-  email: String;
-  password: String;
-  wechat?: String;
-}
-
-export interface OccupationCreateInput {
-  occupations?: OccupationCreateoccupationsInput;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-}
-
-export interface OccupationCreateoccupationsInput {
-  set?: String[] | String;
-}
-
-export interface UserWhereInput {
+export interface ContractWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -344,119 +517,223 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  profile?: ProfileWhereInput;
-  wechat?: String;
-  wechat_not?: String;
-  wechat_in?: String[] | String;
-  wechat_not_in?: String[] | String;
-  wechat_lt?: String;
-  wechat_lte?: String;
-  wechat_gt?: String;
-  wechat_gte?: String;
-  wechat_contains?: String;
-  wechat_not_contains?: String;
-  wechat_starts_with?: String;
-  wechat_not_starts_with?: String;
-  wechat_ends_with?: String;
-  wechat_not_ends_with?: String;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
+  contractaddress?: String;
+  contractaddress_not?: String;
+  contractaddress_in?: String[] | String;
+  contractaddress_not_in?: String[] | String;
+  contractaddress_lt?: String;
+  contractaddress_lte?: String;
+  contractaddress_gt?: String;
+  contractaddress_gte?: String;
+  contractaddress_contains?: String;
+  contractaddress_not_contains?: String;
+  contractaddress_starts_with?: String;
+  contractaddress_not_starts_with?: String;
+  contractaddress_ends_with?: String;
+  contractaddress_not_ends_with?: String;
+  key?: String;
+  key_not?: String;
+  key_in?: String[] | String;
+  key_not_in?: String[] | String;
+  key_lt?: String;
+  key_lte?: String;
+  key_gt?: String;
+  key_gte?: String;
+  key_contains?: String;
+  key_not_contains?: String;
+  key_starts_with?: String;
+  key_not_starts_with?: String;
+  key_ends_with?: String;
+  key_not_ends_with?: String;
+  date?: Int;
+  date_not?: Int;
+  date_in?: Int[] | Int;
+  date_not_in?: Int[] | Int;
+  date_lt?: Int;
+  date_lte?: Int;
+  date_gt?: Int;
+  date_gte?: Int;
+  occupation?: Int;
+  occupation_not?: Int;
+  occupation_in?: Int[] | Int;
+  occupation_not_in?: Int[] | Int;
+  occupation_lt?: Int;
+  occupation_lte?: Int;
+  occupation_gt?: Int;
+  occupation_gte?: Int;
+  blocknumber?: Int;
+  blocknumber_not?: Int;
+  blocknumber_in?: Int[] | Int;
+  blocknumber_not_in?: Int[] | Int;
+  blocknumber_lt?: Int;
+  blocknumber_lte?: Int;
+  blocknumber_gt?: Int;
+  blocknumber_gte?: Int;
+  hash?: String;
+  hash_not?: String;
+  hash_in?: String[] | String;
+  hash_not_in?: String[] | String;
+  hash_lt?: String;
+  hash_lte?: String;
+  hash_gt?: String;
+  hash_gte?: String;
+  hash_contains?: String;
+  hash_not_contains?: String;
+  hash_starts_with?: String;
+  hash_not_starts_with?: String;
+  hash_ends_with?: String;
+  hash_not_ends_with?: String;
+  hotelid?: String;
+  hotelid_not?: String;
+  hotelid_in?: String[] | String;
+  hotelid_not_in?: String[] | String;
+  hotelid_lt?: String;
+  hotelid_lte?: String;
+  hotelid_gt?: String;
+  hotelid_gte?: String;
+  hotelid_contains?: String;
+  hotelid_not_contains?: String;
+  hotelid_starts_with?: String;
+  hotelid_not_starts_with?: String;
+  hotelid_ends_with?: String;
+  hotelid_not_ends_with?: String;
+  adviserid?: String;
+  adviserid_not?: String;
+  adviserid_in?: String[] | String;
+  adviserid_not_in?: String[] | String;
+  adviserid_lt?: String;
+  adviserid_lte?: String;
+  adviserid_gt?: String;
+  adviserid_gte?: String;
+  adviserid_contains?: String;
+  adviserid_not_contains?: String;
+  adviserid_starts_with?: String;
+  adviserid_not_starts_with?: String;
+  adviserid_ends_with?: String;
+  adviserid_not_ends_with?: String;
+  ptid?: String;
+  ptid_not?: String;
+  ptid_in?: String[] | String;
+  ptid_not_in?: String[] | String;
+  ptid_lt?: String;
+  ptid_lte?: String;
+  ptid_gt?: String;
+  ptid_gte?: String;
+  ptid_contains?: String;
+  ptid_not_contains?: String;
+  ptid_starts_with?: String;
+  ptid_not_starts_with?: String;
+  ptid_ends_with?: String;
+  ptid_not_ends_with?: String;
+  orderid?: String;
+  orderid_not?: String;
+  orderid_in?: String[] | String;
+  orderid_not_in?: String[] | String;
+  orderid_lt?: String;
+  orderid_lte?: String;
+  orderid_gt?: String;
+  orderid_gte?: String;
+  orderid_contains?: String;
+  orderid_not_contains?: String;
+  orderid_starts_with?: String;
+  orderid_not_starts_with?: String;
+  orderid_ends_with?: String;
+  orderid_not_ends_with?: String;
+  AND?: ContractWhereInput[] | ContractWhereInput;
+  OR?: ContractWhereInput[] | ContractWhereInput;
+  NOT?: ContractWhereInput[] | ContractWhereInput;
 }
 
-export interface OccupationUpdateInput {
-  occupations?: OccupationUpdateoccupationsInput;
-}
-
-export interface ProfileUpdateWithoutUserDataInput {
-  cover?: ProfileUpdatecoverInput;
-  phone?: String;
-  name?: String;
-  occupation?: String;
-  latitude?: Float;
-  longitude?: Float;
-  address?: String;
-  introduction?: String;
-}
-
-export interface UserUpsertWithoutProfileInput {
-  update: UserUpdateWithoutProfileDataInput;
-  create: UserCreateWithoutProfileInput;
-}
-
-export interface UserUpdateInput {
-  name?: String;
-  email?: String;
-  password?: String;
-  profile?: ProfileUpdateOneWithoutUserInput;
-  wechat?: String;
-}
-
-export interface UserUpdateWithoutProfileDataInput {
-  name?: String;
-  email?: String;
-  password?: String;
-  wechat?: String;
-}
-
-export interface ProfileCreateWithoutUserInput {
-  cover?: ProfileCreatecoverInput;
-  phone: String;
-  name: String;
-  occupation: String;
-  latitude: Float;
-  longitude: Float;
-  address: String;
-  introduction: String;
-}
-
-export interface UserUpdateOneRequiredWithoutProfileInput {
-  create?: UserCreateWithoutProfileInput;
-  update?: UserUpdateWithoutProfileDataInput;
-  upsert?: UserUpsertWithoutProfileInput;
-  connect?: UserWhereUniqueInput;
+export interface TxWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  from?: String;
+  from_not?: String;
+  from_in?: String[] | String;
+  from_not_in?: String[] | String;
+  from_lt?: String;
+  from_lte?: String;
+  from_gt?: String;
+  from_gte?: String;
+  from_contains?: String;
+  from_not_contains?: String;
+  from_starts_with?: String;
+  from_not_starts_with?: String;
+  from_ends_with?: String;
+  from_not_ends_with?: String;
+  to?: String;
+  to_not?: String;
+  to_in?: String[] | String;
+  to_not_in?: String[] | String;
+  to_lt?: String;
+  to_lte?: String;
+  to_gt?: String;
+  to_gte?: String;
+  to_contains?: String;
+  to_not_contains?: String;
+  to_starts_with?: String;
+  to_not_starts_with?: String;
+  to_ends_with?: String;
+  to_not_ends_with?: String;
+  value?: Int;
+  value_not?: Int;
+  value_in?: Int[] | Int;
+  value_not_in?: Int[] | Int;
+  value_lt?: Int;
+  value_lte?: Int;
+  value_gt?: Int;
+  value_gte?: Int;
+  hash?: String;
+  hash_not?: String;
+  hash_in?: String[] | String;
+  hash_not_in?: String[] | String;
+  hash_lt?: String;
+  hash_lte?: String;
+  hash_gt?: String;
+  hash_gte?: String;
+  hash_contains?: String;
+  hash_not_contains?: String;
+  hash_starts_with?: String;
+  hash_not_starts_with?: String;
+  hash_ends_with?: String;
+  hash_not_ends_with?: String;
+  timestamp?: Int;
+  timestamp_not?: Int;
+  timestamp_in?: Int[] | Int;
+  timestamp_not_in?: Int[] | Int;
+  timestamp_lt?: Int;
+  timestamp_lte?: Int;
+  timestamp_gt?: Int;
+  timestamp_gte?: Int;
+  reason?: String;
+  reason_not?: String;
+  reason_in?: String[] | String;
+  reason_not_in?: String[] | String;
+  reason_lt?: String;
+  reason_lte?: String;
+  reason_gt?: String;
+  reason_gte?: String;
+  reason_contains?: String;
+  reason_not_contains?: String;
+  reason_starts_with?: String;
+  reason_not_starts_with?: String;
+  reason_ends_with?: String;
+  reason_not_ends_with?: String;
+  AND?: TxWhereInput[] | TxWhereInput;
+  OR?: TxWhereInput[] | TxWhereInput;
+  NOT?: TxWhereInput[] | TxWhereInput;
 }
 
 export interface OccupationSubscriptionWhereInput {
@@ -468,6 +745,98 @@ export interface OccupationSubscriptionWhereInput {
   AND?: OccupationSubscriptionWhereInput[] | OccupationSubscriptionWhereInput;
   OR?: OccupationSubscriptionWhereInput[] | OccupationSubscriptionWhereInput;
   NOT?: OccupationSubscriptionWhereInput[] | OccupationSubscriptionWhereInput;
+}
+
+export interface UserUpsertWithoutProfileInput {
+  update: UserUpdateWithoutProfileDataInput;
+  create: UserCreateWithoutProfileInput;
+}
+
+export interface BalanceSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: BalanceWhereInput;
+  AND?: BalanceSubscriptionWhereInput[] | BalanceSubscriptionWhereInput;
+  OR?: BalanceSubscriptionWhereInput[] | BalanceSubscriptionWhereInput;
+  NOT?: BalanceSubscriptionWhereInput[] | BalanceSubscriptionWhereInput;
+}
+
+export interface UserUpdateWithoutProfileDataInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  wechat?: String;
+}
+
+export interface UserUpdateManyMutationInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  wechat?: String;
+}
+
+export interface UserUpdateOneRequiredWithoutProfileInput {
+  create?: UserCreateWithoutProfileInput;
+  update?: UserUpdateWithoutProfileDataInput;
+  upsert?: UserUpsertWithoutProfileInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ProfileUpsertWithoutUserInput {
+  update: ProfileUpdateWithoutUserDataInput;
+  create: ProfileCreateWithoutUserInput;
+}
+
+export interface ProfileUpdatecoverInput {
+  set?: String[] | String;
+}
+
+export interface ProfileUpdateOneWithoutUserInput {
+  create?: ProfileCreateWithoutUserInput;
+  update?: ProfileUpdateWithoutUserDataInput;
+  upsert?: ProfileUpsertWithoutUserInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ProfileWhereUniqueInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export type ProfileWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ProfileUpdateInput {
+  cover?: ProfileUpdatecoverInput;
+  phone?: String;
+  name?: String;
+  occupation?: String;
+  latitude?: Float;
+  longitude?: Float;
+  address?: String;
+  introduction?: String;
+  user?: UserUpdateOneRequiredWithoutProfileInput;
+  hotelcer?: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
+}
+
+export interface ProfileCreateOneWithoutUserInput {
+  create?: ProfileCreateWithoutUserInput;
+  connect?: ProfileWhereUniqueInput;
+}
+
+export interface UserCreateWithoutProfileInput {
+  name: String;
+  email: String;
+  password: String;
+  wechat?: String;
 }
 
 export interface ProfileWhereInput {
@@ -572,6 +941,62 @@ export interface ProfileWhereInput {
   introduction_ends_with?: String;
   introduction_not_ends_with?: String;
   user?: UserWhereInput;
+  hotelcer?: String;
+  hotelcer_not?: String;
+  hotelcer_in?: String[] | String;
+  hotelcer_not_in?: String[] | String;
+  hotelcer_lt?: String;
+  hotelcer_lte?: String;
+  hotelcer_gt?: String;
+  hotelcer_gte?: String;
+  hotelcer_contains?: String;
+  hotelcer_not_contains?: String;
+  hotelcer_starts_with?: String;
+  hotelcer_not_starts_with?: String;
+  hotelcer_ends_with?: String;
+  hotelcer_not_ends_with?: String;
+  hoteladd?: String;
+  hoteladd_not?: String;
+  hoteladd_in?: String[] | String;
+  hoteladd_not_in?: String[] | String;
+  hoteladd_lt?: String;
+  hoteladd_lte?: String;
+  hoteladd_gt?: String;
+  hoteladd_gte?: String;
+  hoteladd_contains?: String;
+  hoteladd_not_contains?: String;
+  hoteladd_starts_with?: String;
+  hoteladd_not_starts_with?: String;
+  hoteladd_ends_with?: String;
+  hoteladd_not_ends_with?: String;
+  privatekey?: String;
+  privatekey_not?: String;
+  privatekey_in?: String[] | String;
+  privatekey_not_in?: String[] | String;
+  privatekey_lt?: String;
+  privatekey_lte?: String;
+  privatekey_gt?: String;
+  privatekey_gte?: String;
+  privatekey_contains?: String;
+  privatekey_not_contains?: String;
+  privatekey_starts_with?: String;
+  privatekey_not_starts_with?: String;
+  privatekey_ends_with?: String;
+  privatekey_not_ends_with?: String;
+  publickey?: String;
+  publickey_not?: String;
+  publickey_in?: String[] | String;
+  publickey_not_in?: String[] | String;
+  publickey_lt?: String;
+  publickey_lte?: String;
+  publickey_gt?: String;
+  publickey_gte?: String;
+  publickey_contains?: String;
+  publickey_not_contains?: String;
+  publickey_starts_with?: String;
+  publickey_not_starts_with?: String;
+  publickey_ends_with?: String;
+  publickey_not_ends_with?: String;
   AND?: ProfileWhereInput[] | ProfileWhereInput;
   OR?: ProfileWhereInput[] | ProfileWhereInput;
   NOT?: ProfileWhereInput[] | ProfileWhereInput;
@@ -582,8 +1007,116 @@ export interface UserCreateOneWithoutProfileInput {
   connect?: UserWhereUniqueInput;
 }
 
+export interface BalanceWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  xuid?: String;
+  xuid_not?: String;
+  xuid_in?: String[] | String;
+  xuid_not_in?: String[] | String;
+  xuid_lt?: String;
+  xuid_lte?: String;
+  xuid_gt?: String;
+  xuid_gte?: String;
+  xuid_contains?: String;
+  xuid_not_contains?: String;
+  xuid_starts_with?: String;
+  xuid_not_starts_with?: String;
+  xuid_ends_with?: String;
+  xuid_not_ends_with?: String;
+  balance?: Int;
+  balance_not?: Int;
+  balance_in?: Int[] | Int;
+  balance_not_in?: Int[] | Int;
+  balance_lt?: Int;
+  balance_lte?: Int;
+  balance_gt?: Int;
+  balance_gte?: Int;
+  AND?: BalanceWhereInput[] | BalanceWhereInput;
+  OR?: BalanceWhereInput[] | BalanceWhereInput;
+  NOT?: BalanceWhereInput[] | BalanceWhereInput;
+}
+
 export interface ProfileCreatecoverInput {
   set?: String[] | String;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface ProfileSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProfileWhereInput;
+  AND?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+  OR?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+  NOT?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+}
+
+export type OccupationWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BalanceCreateInput {
+  xuid?: String;
+  balance?: Int;
+}
+
+export interface ProfileUpdateWithoutUserDataInput {
+  cover?: ProfileUpdatecoverInput;
+  phone?: String;
+  name?: String;
+  occupation?: String;
+  latitude?: Float;
+  longitude?: Float;
+  address?: String;
+  introduction?: String;
+  hotelcer?: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
+}
+
+export interface BalanceUpdateInput {
+  xuid?: String;
+  balance?: Int;
+}
+
+export interface ProfileCreateWithoutUserInput {
+  cover?: ProfileCreatecoverInput;
+  phone: String;
+  name: String;
+  occupation: String;
+  latitude: Float;
+  longitude: Float;
+  address: String;
+  introduction: String;
+  hotelcer: String;
+  hoteladd: String;
+  privatekey: String;
+  publickey: String;
 }
 
 export interface ProfileCreateInput {
@@ -596,9 +1129,105 @@ export interface ProfileCreateInput {
   address: String;
   introduction: String;
   user: UserCreateOneWithoutProfileInput;
+  hotelcer: String;
+  hoteladd: String;
+  privatekey: String;
+  publickey: String;
 }
 
-export interface ProfileUpdatecoverInput {
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  profile?: ProfileWhereInput;
+  wechat?: String;
+  wechat_not?: String;
+  wechat_in?: String[] | String;
+  wechat_not_in?: String[] | String;
+  wechat_lt?: String;
+  wechat_lte?: String;
+  wechat_gt?: String;
+  wechat_gte?: String;
+  wechat_contains?: String;
+  wechat_not_contains?: String;
+  wechat_starts_with?: String;
+  wechat_not_starts_with?: String;
+  wechat_ends_with?: String;
+  wechat_not_ends_with?: String;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export interface OccupationUpdateManyMutationInput {
+  occupations?: OccupationUpdateoccupationsInput;
+}
+
+export interface TxSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: TxWhereInput;
+  AND?: TxSubscriptionWhereInput[] | TxSubscriptionWhereInput;
+  OR?: TxSubscriptionWhereInput[] | TxSubscriptionWhereInput;
+  NOT?: TxSubscriptionWhereInput[] | TxSubscriptionWhereInput;
+}
+
+export interface OccupationUpdateoccupationsInput {
   set?: String[] | String;
 }
 
@@ -622,50 +1251,78 @@ export interface OccupationWhereInput {
   NOT?: OccupationWhereInput[] | OccupationWhereInput;
 }
 
-export interface UserUpdateManyMutationInput {
+export interface OccupationCreateInput {
+  occupations?: OccupationCreateoccupationsInput;
+}
+
+export interface ContractUpdateManyMutationInput {
+  contractaddress?: String;
+  key?: String;
+  date?: Int;
+  occupation?: Int;
+  blocknumber?: Int;
+  hash?: String;
+  hotelid?: String;
+  adviserid?: String;
+  ptid?: String;
+  orderid?: String;
+}
+
+export interface OccupationUpdateInput {
+  occupations?: OccupationUpdateoccupationsInput;
+}
+
+export interface ContractCreateInput {
+  contractaddress?: String;
+  key?: String;
+  date?: Int;
+  occupation?: Int;
+  blocknumber?: Int;
+  hash?: String;
+  hotelid?: String;
+  adviserid?: String;
+  ptid?: String;
+  orderid?: String;
+}
+
+export interface UserUpdateInput {
   name?: String;
   email?: String;
   password?: String;
+  profile?: ProfileUpdateOneWithoutUserInput;
   wechat?: String;
 }
 
-export interface ProfileCreateOneWithoutUserInput {
-  create?: ProfileCreateWithoutUserInput;
-  connect?: ProfileWhereUniqueInput;
+export interface ContractSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ContractWhereInput;
+  AND?: ContractSubscriptionWhereInput[] | ContractSubscriptionWhereInput;
+  OR?: ContractSubscriptionWhereInput[] | ContractSubscriptionWhereInput;
+  NOT?: ContractSubscriptionWhereInput[] | ContractSubscriptionWhereInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  email?: String;
-}>;
+export interface TxUpdateManyMutationInput {
+  from?: String;
+  to?: String;
+  value?: Int;
+  hash?: String;
+  timestamp?: Int;
+  reason?: String;
+}
 
-export interface ProfileUpdateOneWithoutUserInput {
-  create?: ProfileCreateWithoutUserInput;
-  update?: ProfileUpdateWithoutUserDataInput;
-  upsert?: ProfileUpsertWithoutUserInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: ProfileWhereUniqueInput;
+export interface UserCreateInput {
+  name: String;
+  email: String;
+  password: String;
+  profile?: ProfileCreateOneWithoutUserInput;
+  wechat?: String;
 }
 
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface UserPreviousValues {
@@ -696,69 +1353,6 @@ export interface UserPreviousValuesSubscription
   wechat: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ProfileEdge {
-  node: Profile;
-  cursor: String;
-}
-
-export interface ProfileEdgePromise extends Promise<ProfileEdge>, Fragmentable {
-  node: <T = ProfilePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ProfileEdgeSubscription
-  extends Promise<AsyncIterator<ProfileEdge>>,
-    Fragmentable {
-  node: <T = ProfileSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface ProfileConnection {
-  pageInfo: PageInfo;
-  edges: ProfileEdge[];
-}
-
-export interface ProfileConnectionPromise
-  extends Promise<ProfileConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ProfileEdge>>() => T;
-  aggregate: <T = AggregateProfilePromise>() => T;
-}
-
-export interface ProfileConnectionSubscription
-  extends Promise<AsyncIterator<ProfileConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ProfileEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateProfileSubscription>() => T;
-}
-
 export interface OccupationConnection {
   pageInfo: PageInfo;
   edges: OccupationEdge[];
@@ -778,6 +1372,325 @@ export interface OccupationConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<OccupationEdgeSubscription>>>() => T;
   aggregate: <T = AggregateOccupationSubscription>() => T;
+}
+
+export interface BalanceEdge {
+  node: Balance;
+  cursor: String;
+}
+
+export interface BalanceEdgePromise extends Promise<BalanceEdge>, Fragmentable {
+  node: <T = BalancePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BalanceEdgeSubscription
+  extends Promise<AsyncIterator<BalanceEdge>>,
+    Fragmentable {
+  node: <T = BalanceSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BalanceConnection {
+  pageInfo: PageInfo;
+  edges: BalanceEdge[];
+}
+
+export interface BalanceConnectionPromise
+  extends Promise<BalanceConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BalanceEdge>>() => T;
+  aggregate: <T = AggregateBalancePromise>() => T;
+}
+
+export interface BalanceConnectionSubscription
+  extends Promise<AsyncIterator<BalanceConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BalanceEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBalanceSubscription>() => T;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface Occupation {
+  id: ID_Output;
+  occupations: String[];
+}
+
+export interface OccupationPromise extends Promise<Occupation>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  occupations: () => Promise<String[]>;
+}
+
+export interface OccupationSubscription
+  extends Promise<AsyncIterator<Occupation>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  occupations: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateContract {
+  count: Int;
+}
+
+export interface AggregateContractPromise
+  extends Promise<AggregateContract>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateContractSubscription
+  extends Promise<AsyncIterator<AggregateContract>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface Balance {
+  id: ID_Output;
+  xuid?: String;
+  balance?: Int;
+}
+
+export interface BalancePromise extends Promise<Balance>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  xuid: () => Promise<String>;
+  balance: () => Promise<Int>;
+}
+
+export interface BalanceSubscription
+  extends Promise<AsyncIterator<Balance>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  xuid: () => Promise<AsyncIterator<String>>;
+  balance: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateTx {
+  count: Int;
+}
+
+export interface AggregateTxPromise extends Promise<AggregateTx>, Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTxSubscription
+  extends Promise<AsyncIterator<AggregateTx>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BalanceSubscriptionPayload {
+  mutation: MutationType;
+  node: Balance;
+  updatedFields: String[];
+  previousValues: BalancePreviousValues;
+}
+
+export interface BalanceSubscriptionPayloadPromise
+  extends Promise<BalanceSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BalancePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BalancePreviousValuesPromise>() => T;
+}
+
+export interface BalanceSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BalanceSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BalanceSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BalancePreviousValuesSubscription>() => T;
+}
+
+export interface TxConnection {
+  pageInfo: PageInfo;
+  edges: TxEdge[];
+}
+
+export interface TxConnectionPromise
+  extends Promise<TxConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TxEdge>>() => T;
+  aggregate: <T = AggregateTxPromise>() => T;
+}
+
+export interface TxConnectionSubscription
+  extends Promise<AsyncIterator<TxConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TxEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTxSubscription>() => T;
+}
+
+export interface BalancePreviousValues {
+  id: ID_Output;
+  xuid?: String;
+  balance?: Int;
+}
+
+export interface BalancePreviousValuesPromise
+  extends Promise<BalancePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  xuid: () => Promise<String>;
+  balance: () => Promise<Int>;
+}
+
+export interface BalancePreviousValuesSubscription
+  extends Promise<AsyncIterator<BalancePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  xuid: () => Promise<AsyncIterator<String>>;
+  balance: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Tx {
+  id: ID_Output;
+  from: String;
+  to: String;
+  value: Int;
+  hash: String;
+  timestamp: Int;
+  reason?: String;
+}
+
+export interface TxPromise extends Promise<Tx>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  from: () => Promise<String>;
+  to: () => Promise<String>;
+  value: () => Promise<Int>;
+  hash: () => Promise<String>;
+  timestamp: () => Promise<Int>;
+  reason: () => Promise<String>;
+}
+
+export interface TxSubscription
+  extends Promise<AsyncIterator<Tx>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  from: () => Promise<AsyncIterator<String>>;
+  to: () => Promise<AsyncIterator<String>>;
+  value: () => Promise<AsyncIterator<Int>>;
+  hash: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<Int>>;
+  reason: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContractEdge {
+  node: Contract;
+  cursor: String;
+}
+
+export interface ContractEdgePromise
+  extends Promise<ContractEdge>,
+    Fragmentable {
+  node: <T = ContractPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ContractEdgeSubscription
+  extends Promise<AsyncIterator<ContractEdge>>,
+    Fragmentable {
+  node: <T = ContractSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ProfileEdge {
+  node: Profile;
+  cursor: String;
+}
+
+export interface ProfileEdgePromise extends Promise<ProfileEdge>, Fragmentable {
+  node: <T = ProfilePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProfileEdgeSubscription
+  extends Promise<AsyncIterator<ProfileEdge>>,
+    Fragmentable {
+  node: <T = ProfileSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContractSubscriptionPayload {
+  mutation: MutationType;
+  node: Contract;
+  updatedFields: String[];
+  previousValues: ContractPreviousValues;
+}
+
+export interface ContractSubscriptionPayloadPromise
+  extends Promise<ContractSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ContractPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ContractPreviousValuesPromise>() => T;
+}
+
+export interface ContractSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ContractSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ContractSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ContractPreviousValuesSubscription>() => T;
 }
 
 export interface User {
@@ -808,27 +1721,50 @@ export interface UserSubscription
   wechat: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface ContractPreviousValues {
+  id: ID_Output;
+  contractaddress?: String;
+  key?: String;
+  date?: Int;
+  occupation?: Int;
+  blocknumber?: Int;
+  hash?: String;
+  hotelid?: String;
+  adviserid?: String;
+  ptid?: String;
+  orderid?: String;
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface ContractPreviousValuesPromise
+  extends Promise<ContractPreviousValues>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  contractaddress: () => Promise<String>;
+  key: () => Promise<String>;
+  date: () => Promise<Int>;
+  occupation: () => Promise<Int>;
+  blocknumber: () => Promise<Int>;
+  hash: () => Promise<String>;
+  hotelid: () => Promise<String>;
+  adviserid: () => Promise<String>;
+  ptid: () => Promise<String>;
+  orderid: () => Promise<String>;
+}
+
+export interface ContractPreviousValuesSubscription
+  extends Promise<AsyncIterator<ContractPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  contractaddress: () => Promise<AsyncIterator<String>>;
+  key: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<Int>>;
+  occupation: () => Promise<AsyncIterator<Int>>;
+  blocknumber: () => Promise<AsyncIterator<Int>>;
+  hash: () => Promise<AsyncIterator<String>>;
+  hotelid: () => Promise<AsyncIterator<String>>;
+  adviserid: () => Promise<AsyncIterator<String>>;
+  ptid: () => Promise<AsyncIterator<String>>;
+  orderid: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Profile {
@@ -841,6 +1777,10 @@ export interface Profile {
   longitude: Float;
   address: String;
   introduction: String;
+  hotelcer: String;
+  hoteladd: String;
+  privatekey: String;
+  publickey: String;
 }
 
 export interface ProfilePromise extends Promise<Profile>, Fragmentable {
@@ -854,6 +1794,10 @@ export interface ProfilePromise extends Promise<Profile>, Fragmentable {
   address: () => Promise<String>;
   introduction: () => Promise<String>;
   user: <T = UserPromise>() => T;
+  hotelcer: () => Promise<String>;
+  hoteladd: () => Promise<String>;
+  privatekey: () => Promise<String>;
+  publickey: () => Promise<String>;
 }
 
 export interface ProfileSubscription
@@ -869,62 +1813,135 @@ export interface ProfileSubscription
   address: () => Promise<AsyncIterator<String>>;
   introduction: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
+  hotelcer: () => Promise<AsyncIterator<String>>;
+  hoteladd: () => Promise<AsyncIterator<String>>;
+  privatekey: () => Promise<AsyncIterator<String>>;
+  publickey: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUser {
+export interface ContractConnection {
+  pageInfo: PageInfo;
+  edges: ContractEdge[];
+}
+
+export interface ContractConnectionPromise
+  extends Promise<ContractConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ContractEdge>>() => T;
+  aggregate: <T = AggregateContractPromise>() => T;
+}
+
+export interface ContractConnectionSubscription
+  extends Promise<AsyncIterator<ContractConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContractEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContractSubscription>() => T;
+}
+
+export interface OccupationEdge {
+  node: Occupation;
+  cursor: String;
+}
+
+export interface OccupationEdgePromise
+  extends Promise<OccupationEdge>,
+    Fragmentable {
+  node: <T = OccupationPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface OccupationEdgeSubscription
+  extends Promise<AsyncIterator<OccupationEdge>>,
+    Fragmentable {
+  node: <T = OccupationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateOccupation {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateOccupationPromise
+  extends Promise<AggregateOccupation>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateOccupationSubscription
+  extends Promise<AsyncIterator<AggregateOccupation>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface OccupationPreviousValues {
+export interface Contract {
   id: ID_Output;
-  occupations: String[];
+  contractaddress?: String;
+  key?: String;
+  date?: Int;
+  occupation?: Int;
+  blocknumber?: Int;
+  hash?: String;
+  hotelid?: String;
+  adviserid?: String;
+  ptid?: String;
+  orderid?: String;
 }
 
-export interface OccupationPreviousValuesPromise
-  extends Promise<OccupationPreviousValues>,
-    Fragmentable {
+export interface ContractPromise extends Promise<Contract>, Fragmentable {
   id: () => Promise<ID_Output>;
-  occupations: () => Promise<String[]>;
+  contractaddress: () => Promise<String>;
+  key: () => Promise<String>;
+  date: () => Promise<Int>;
+  occupation: () => Promise<Int>;
+  blocknumber: () => Promise<Int>;
+  hash: () => Promise<String>;
+  hotelid: () => Promise<String>;
+  adviserid: () => Promise<String>;
+  ptid: () => Promise<String>;
+  orderid: () => Promise<String>;
 }
 
-export interface OccupationPreviousValuesSubscription
-  extends Promise<AsyncIterator<OccupationPreviousValues>>,
+export interface ContractSubscription
+  extends Promise<AsyncIterator<Contract>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  occupations: () => Promise<AsyncIterator<String[]>>;
+  contractaddress: () => Promise<AsyncIterator<String>>;
+  key: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<Int>>;
+  occupation: () => Promise<AsyncIterator<Int>>;
+  blocknumber: () => Promise<AsyncIterator<Int>>;
+  hash: () => Promise<AsyncIterator<String>>;
+  hotelid: () => Promise<AsyncIterator<String>>;
+  adviserid: () => Promise<AsyncIterator<String>>;
+  ptid: () => Promise<AsyncIterator<String>>;
+  orderid: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TxSubscriptionPayload {
+  mutation: MutationType;
+  node: Tx;
+  updatedFields: String[];
+  previousValues: TxPreviousValues;
+}
+
+export interface TxSubscriptionPayloadPromise
+  extends Promise<TxSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TxPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TxPreviousValuesPromise>() => T;
+}
+
+export interface TxSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TxSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TxSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TxPreviousValuesSubscription>() => T;
 }
 
 export interface OccupationSubscriptionPayload {
@@ -952,79 +1969,6 @@ export interface OccupationSubscriptionPayloadSubscription
   previousValues: <T = OccupationPreviousValuesSubscription>() => T;
 }
 
-export interface Occupation {
-  id: ID_Output;
-  occupations: String[];
-}
-
-export interface OccupationPromise extends Promise<Occupation>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  occupations: () => Promise<String[]>;
-}
-
-export interface OccupationSubscription
-  extends Promise<AsyncIterator<Occupation>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  occupations: () => Promise<AsyncIterator<String[]>>;
-}
-
-export interface AggregateOccupation {
-  count: Int;
-}
-
-export interface AggregateOccupationPromise
-  extends Promise<AggregateOccupation>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateOccupationSubscription
-  extends Promise<AsyncIterator<AggregateOccupation>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ProfilePreviousValues {
-  id: ID_Output;
-  cover: String[];
-  phone: String;
-  name: String;
-  occupation: String;
-  latitude: Float;
-  longitude: Float;
-  address: String;
-  introduction: String;
-}
-
-export interface ProfilePreviousValuesPromise
-  extends Promise<ProfilePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  cover: () => Promise<String[]>;
-  phone: () => Promise<String>;
-  name: () => Promise<String>;
-  occupation: () => Promise<String>;
-  latitude: () => Promise<Float>;
-  longitude: () => Promise<Float>;
-  address: () => Promise<String>;
-  introduction: () => Promise<String>;
-}
-
-export interface ProfilePreviousValuesSubscription
-  extends Promise<AsyncIterator<ProfilePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  cover: () => Promise<AsyncIterator<String[]>>;
-  phone: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  occupation: () => Promise<AsyncIterator<String>>;
-  latitude: () => Promise<AsyncIterator<Float>>;
-  longitude: () => Promise<AsyncIterator<Float>>;
-  address: () => Promise<AsyncIterator<String>>;
-  introduction: () => Promise<AsyncIterator<String>>;
-}
-
 export interface UserEdge {
   node: User;
   cursor: String;
@@ -1040,6 +1984,91 @@ export interface UserEdgeSubscription
     Fragmentable {
   node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TxEdge {
+  node: Tx;
+  cursor: String;
+}
+
+export interface TxEdgePromise extends Promise<TxEdge>, Fragmentable {
+  node: <T = TxPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TxEdgeSubscription
+  extends Promise<AsyncIterator<TxEdge>>,
+    Fragmentable {
+  node: <T = TxSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProfile {
+  count: Int;
+}
+
+export interface AggregateProfilePromise
+  extends Promise<AggregateProfile>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProfileSubscription
+  extends Promise<AsyncIterator<AggregateProfile>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProfilePreviousValues {
+  id: ID_Output;
+  cover: String[];
+  phone: String;
+  name: String;
+  occupation: String;
+  latitude: Float;
+  longitude: Float;
+  address: String;
+  introduction: String;
+  hotelcer: String;
+  hoteladd: String;
+  privatekey: String;
+  publickey: String;
+}
+
+export interface ProfilePreviousValuesPromise
+  extends Promise<ProfilePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  cover: () => Promise<String[]>;
+  phone: () => Promise<String>;
+  name: () => Promise<String>;
+  occupation: () => Promise<String>;
+  latitude: () => Promise<Float>;
+  longitude: () => Promise<Float>;
+  address: () => Promise<String>;
+  introduction: () => Promise<String>;
+  hotelcer: () => Promise<String>;
+  hoteladd: () => Promise<String>;
+  privatekey: () => Promise<String>;
+  publickey: () => Promise<String>;
+}
+
+export interface ProfilePreviousValuesSubscription
+  extends Promise<AsyncIterator<ProfilePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  cover: () => Promise<AsyncIterator<String[]>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  occupation: () => Promise<AsyncIterator<String>>;
+  latitude: () => Promise<AsyncIterator<Float>>;
+  longitude: () => Promise<AsyncIterator<Float>>;
+  address: () => Promise<AsyncIterator<String>>;
+  introduction: () => Promise<AsyncIterator<String>>;
+  hotelcer: () => Promise<AsyncIterator<String>>;
+  hoteladd: () => Promise<AsyncIterator<String>>;
+  privatekey: () => Promise<AsyncIterator<String>>;
+  publickey: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ProfileSubscriptionPayload {
@@ -1067,47 +2096,143 @@ export interface ProfileSubscriptionPayloadSubscription
   previousValues: <T = ProfilePreviousValuesSubscription>() => T;
 }
 
-export interface OccupationEdge {
-  node: Occupation;
-  cursor: String;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface OccupationEdgePromise
-  extends Promise<OccupationEdge>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  node: <T = OccupationPromise>() => T;
-  cursor: () => Promise<String>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface OccupationEdgeSubscription
-  extends Promise<AsyncIterator<OccupationEdge>>,
+export interface OccupationPreviousValues {
+  id: ID_Output;
+  occupations: String[];
+}
+
+export interface OccupationPreviousValuesPromise
+  extends Promise<OccupationPreviousValues>,
     Fragmentable {
-  node: <T = OccupationSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  occupations: () => Promise<String[]>;
 }
 
-export interface AggregateProfile {
+export interface OccupationPreviousValuesSubscription
+  extends Promise<AsyncIterator<OccupationPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  occupations: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface ProfileConnection {
+  pageInfo: PageInfo;
+  edges: ProfileEdge[];
+}
+
+export interface ProfileConnectionPromise
+  extends Promise<ProfileConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProfileEdge>>() => T;
+  aggregate: <T = AggregateProfilePromise>() => T;
+}
+
+export interface ProfileConnectionSubscription
+  extends Promise<AsyncIterator<ProfileConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProfileEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProfileSubscription>() => T;
+}
+
+export interface AggregateBalance {
   count: Int;
 }
 
-export interface AggregateProfilePromise
-  extends Promise<AggregateProfile>,
+export interface AggregateBalancePromise
+  extends Promise<AggregateBalance>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateProfileSubscription
-  extends Promise<AsyncIterator<AggregateProfile>>,
+export interface AggregateBalanceSubscription
+  extends Promise<AsyncIterator<AggregateBalance>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export type Long = string;
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
 
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface TxPreviousValues {
+  id: ID_Output;
+  from: String;
+  to: String;
+  value: Int;
+  hash: String;
+  timestamp: Int;
+  reason?: String;
+}
+
+export interface TxPreviousValuesPromise
+  extends Promise<TxPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  from: () => Promise<String>;
+  to: () => Promise<String>;
+  value: () => Promise<Int>;
+  hash: () => Promise<String>;
+  timestamp: () => Promise<Int>;
+  reason: () => Promise<String>;
+}
+
+export interface TxPreviousValuesSubscription
+  extends Promise<AsyncIterator<TxPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  from: () => Promise<AsyncIterator<String>>;
+  to: () => Promise<AsyncIterator<String>>;
+  value: () => Promise<AsyncIterator<Int>>;
+  hash: () => Promise<AsyncIterator<String>>;
+  timestamp: () => Promise<AsyncIterator<Int>>;
+  reason: () => Promise<AsyncIterator<String>>;
+}
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
@@ -1115,9 +2240,10 @@ The `Boolean` scalar type represents `true` or `false`.
 export type Boolean = boolean;
 
 /*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type Float = number;
+export type ID_Input = string | number;
+export type ID_Output = string;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -1125,10 +2251,16 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type Int = number;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
+
+export type Long = string;
 
 /**
  * Model Metadata
@@ -1145,6 +2277,18 @@ export const models: Model[] = [
   },
   {
     name: "Occupation",
+    embedded: false
+  },
+  {
+    name: "Balance",
+    embedded: false
+  },
+  {
+    name: "Tx",
+    embedded: false
+  },
+  {
+    name: "Contract",
     embedded: false
   }
 ];
