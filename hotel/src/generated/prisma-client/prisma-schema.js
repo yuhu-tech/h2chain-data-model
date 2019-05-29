@@ -579,9 +579,9 @@ type Profile {
   introduction: String!
   user: User!
   hotelcer: String!
-  hoteladd: String!
-  privatekey: String!
-  publickey: String!
+  hoteladd: String
+  privatekey: String
+  publickey: String
 }
 
 type ProfileConnection {
@@ -605,9 +605,9 @@ input ProfileCreateInput {
   introduction: String!
   user: UserCreateOneWithoutProfileInput!
   hotelcer: String!
-  hoteladd: String!
-  privatekey: String!
-  publickey: String!
+  hoteladd: String
+  privatekey: String
+  publickey: String
 }
 
 input ProfileCreateOneWithoutUserInput {
@@ -625,9 +625,9 @@ input ProfileCreateWithoutUserInput {
   address: String!
   introduction: String!
   hotelcer: String!
-  hoteladd: String!
-  privatekey: String!
-  publickey: String!
+  hoteladd: String
+  privatekey: String
+  publickey: String
 }
 
 type ProfileEdge {
@@ -677,9 +677,9 @@ type ProfilePreviousValues {
   address: String!
   introduction: String!
   hotelcer: String!
-  hoteladd: String!
-  privatekey: String!
-  publickey: String!
+  hoteladd: String
+  privatekey: String
+  publickey: String
 }
 
 type ProfileSubscriptionPayload {

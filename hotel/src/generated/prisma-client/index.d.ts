@@ -1114,9 +1114,9 @@ export interface ProfileCreateWithoutUserInput {
   address: String;
   introduction: String;
   hotelcer: String;
-  hoteladd: String;
-  privatekey: String;
-  publickey: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface ProfileCreateInput {
@@ -1130,9 +1130,9 @@ export interface ProfileCreateInput {
   introduction: String;
   user: UserCreateOneWithoutProfileInput;
   hotelcer: String;
-  hoteladd: String;
-  privatekey: String;
-  publickey: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface UserWhereInput {
@@ -1778,9 +1778,9 @@ export interface Profile {
   address: String;
   introduction: String;
   hotelcer: String;
-  hoteladd: String;
-  privatekey: String;
-  publickey: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface ProfilePromise extends Promise<Profile>, Fragmentable {
@@ -2030,9 +2030,9 @@ export interface ProfilePreviousValues {
   address: String;
   introduction: String;
   hotelcer: String;
-  hoteladd: String;
-  privatekey: String;
-  publickey: String;
+  hoteladd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface ProfilePreviousValuesPromise

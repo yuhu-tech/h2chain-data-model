@@ -207,9 +207,9 @@ export interface PersonalmsgCreateWithoutUserInput {
   height: Int;
   weight: Int;
   status: Int;
-  ptadd: String;
-  privatekey: String;
-  publickey: String;
+  ptadd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface UserUpsertWithoutPersonalmsgInput {
@@ -268,9 +268,9 @@ export interface PersonalmsgCreateInput {
   weight: Int;
   status: Int;
   user: UserCreateOneWithoutPersonalmsgInput;
-  ptadd: String;
-  privatekey: String;
-  publickey: String;
+  ptadd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -646,9 +646,9 @@ export interface Personalmsg {
   height: Int;
   weight: Int;
   status: Int;
-  ptadd: String;
-  privatekey: String;
-  publickey: String;
+  ptadd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface PersonalmsgPromise extends Promise<Personalmsg>, Fragmentable {
@@ -794,9 +794,9 @@ export interface PersonalmsgPreviousValues {
   height: Int;
   weight: Int;
   status: Int;
-  ptadd: String;
-  privatekey: String;
-  publickey: String;
+  ptadd?: String;
+  privatekey?: String;
+  publickey?: String;
 }
 
 export interface PersonalmsgPreviousValuesPromise

@@ -344,9 +344,9 @@ export interface ProfileCreateInput {
   introduction?: String;
   user: UserCreateOneWithoutProfileInput;
   advisercer: String;
-  adviseradd: String;
-  publickey: String;
-  privatekey: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export type WorkcontentWhereUniqueInput = AtLeastOne<{
@@ -369,9 +369,9 @@ export interface ProfileCreateWithoutUserInput {
   companyname?: String;
   introduction?: String;
   advisercer: String;
-  adviseradd: String;
-  publickey: String;
-  privatekey: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export type ProfileWhereUniqueInput = AtLeastOne<{
@@ -957,9 +957,9 @@ export interface Profile {
   companyname?: String;
   introduction?: String;
   advisercer: String;
-  adviseradd: String;
-  publickey: String;
-  privatekey: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export interface ProfilePromise extends Promise<Profile>, Fragmentable {
@@ -1386,9 +1386,9 @@ export interface ProfilePreviousValues {
   companyname?: String;
   introduction?: String;
   advisercer: String;
-  adviseradd: String;
-  publickey: String;
-  privatekey: String;
+  adviseradd?: String;
+  publickey?: String;
+  privatekey?: String;
 }
 
 export interface ProfilePreviousValuesPromise

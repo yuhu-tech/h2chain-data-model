@@ -197,9 +197,9 @@ type Profile {
   introduction: String
   user: User!
   advisercer: String!
-  adviseradd: String!
-  publickey: String!
-  privatekey: String!
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 type ProfileConnection {
@@ -214,9 +214,9 @@ input ProfileCreateInput {
   introduction: String
   user: UserCreateOneWithoutProfileInput!
   advisercer: String!
-  adviseradd: String!
-  publickey: String!
-  privatekey: String!
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 input ProfileCreateOneWithoutUserInput {
@@ -229,9 +229,9 @@ input ProfileCreateWithoutUserInput {
   companyname: String
   introduction: String
   advisercer: String!
-  adviseradd: String!
-  publickey: String!
-  privatekey: String!
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 type ProfileEdge {
@@ -268,9 +268,9 @@ type ProfilePreviousValues {
   companyname: String
   introduction: String
   advisercer: String!
-  adviseradd: String!
-  publickey: String!
-  privatekey: String!
+  adviseradd: String
+  publickey: String
+  privatekey: String
 }
 
 type ProfileSubscriptionPayload {

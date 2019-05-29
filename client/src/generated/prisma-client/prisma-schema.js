@@ -59,9 +59,9 @@ type Personalmsg {
   weight: Int!
   status: Int!
   user: User!
-  ptadd: String!
-  privatekey: String!
-  publickey: String!
+  ptadd: String
+  privatekey: String
+  publickey: String
 }
 
 type PersonalmsgConnection {
@@ -79,9 +79,9 @@ input PersonalmsgCreateInput {
   weight: Int!
   status: Int!
   user: UserCreateOneWithoutPersonalmsgInput!
-  ptadd: String!
-  privatekey: String!
-  publickey: String!
+  ptadd: String
+  privatekey: String
+  publickey: String
 }
 
 input PersonalmsgCreateOneWithoutUserInput {
@@ -97,9 +97,9 @@ input PersonalmsgCreateWithoutUserInput {
   height: Int!
   weight: Int!
   status: Int!
-  ptadd: String!
-  privatekey: String!
-  publickey: String!
+  ptadd: String
+  privatekey: String
+  publickey: String
 }
 
 type PersonalmsgEdge {
@@ -145,9 +145,9 @@ type PersonalmsgPreviousValues {
   height: Int!
   weight: Int!
   status: Int!
-  ptadd: String!
-  privatekey: String!
-  publickey: String!
+  ptadd: String
+  privatekey: String
+  publickey: String
 }
 
 type PersonalmsgSubscriptionPayload {
