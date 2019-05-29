@@ -15,9 +15,9 @@ type Profile {
   introduction:String
   user :  User!
   advisercer:String!
-  adviseradd:String!
-  publickey:String!
-  privatekey:String!
+  adviseradd:String
+  publickey:String
+  privatekey:String
 }
 
 
