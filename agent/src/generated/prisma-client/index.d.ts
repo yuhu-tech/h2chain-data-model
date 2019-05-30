@@ -168,12 +168,6 @@ export type PersonalmsgOrderByInput =
   | "weight_DESC"
   | "status_ASC"
   | "status_DESC"
-  | "ptadd_ASC"
-  | "ptadd_DESC"
-  | "privatekey_ASC"
-  | "privatekey_DESC"
-  | "publickey_ASC"
-  | "publickey_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -207,9 +201,6 @@ export interface PersonalmsgCreateWithoutUserInput {
   height: Int;
   weight: Int;
   status: Int;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export interface UserUpsertWithoutPersonalmsgInput {
@@ -254,9 +245,6 @@ export interface PersonalmsgUpdateWithoutUserDataInput {
   height?: Int;
   weight?: Int;
   status?: Int;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export interface PersonalmsgCreateInput {
@@ -268,9 +256,6 @@ export interface PersonalmsgCreateInput {
   weight: Int;
   status: Int;
   user: UserCreateOneWithoutPersonalmsgInput;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -408,48 +393,6 @@ export interface PersonalmsgWhereInput {
   status_gt?: Int;
   status_gte?: Int;
   user?: UserWhereInput;
-  ptadd?: String;
-  ptadd_not?: String;
-  ptadd_in?: String[] | String;
-  ptadd_not_in?: String[] | String;
-  ptadd_lt?: String;
-  ptadd_lte?: String;
-  ptadd_gt?: String;
-  ptadd_gte?: String;
-  ptadd_contains?: String;
-  ptadd_not_contains?: String;
-  ptadd_starts_with?: String;
-  ptadd_not_starts_with?: String;
-  ptadd_ends_with?: String;
-  ptadd_not_ends_with?: String;
-  privatekey?: String;
-  privatekey_not?: String;
-  privatekey_in?: String[] | String;
-  privatekey_not_in?: String[] | String;
-  privatekey_lt?: String;
-  privatekey_lte?: String;
-  privatekey_gt?: String;
-  privatekey_gte?: String;
-  privatekey_contains?: String;
-  privatekey_not_contains?: String;
-  privatekey_starts_with?: String;
-  privatekey_not_starts_with?: String;
-  privatekey_ends_with?: String;
-  privatekey_not_ends_with?: String;
-  publickey?: String;
-  publickey_not?: String;
-  publickey_in?: String[] | String;
-  publickey_not_in?: String[] | String;
-  publickey_lt?: String;
-  publickey_lte?: String;
-  publickey_gt?: String;
-  publickey_gte?: String;
-  publickey_contains?: String;
-  publickey_not_contains?: String;
-  publickey_starts_with?: String;
-  publickey_not_starts_with?: String;
-  publickey_ends_with?: String;
-  publickey_not_ends_with?: String;
   AND?: PersonalmsgWhereInput[] | PersonalmsgWhereInput;
   OR?: PersonalmsgWhereInput[] | PersonalmsgWhereInput;
   NOT?: PersonalmsgWhereInput[] | PersonalmsgWhereInput;
@@ -471,9 +414,6 @@ export interface PersonalmsgUpdateInput {
   weight?: Int;
   status?: Int;
   user?: UserUpdateOneRequiredWithoutPersonalmsgInput;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export interface PersonalmsgUpdateManyMutationInput {
@@ -484,9 +424,6 @@ export interface PersonalmsgUpdateManyMutationInput {
   height?: Int;
   weight?: Int;
   status?: Int;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export interface PersonalmsgSubscriptionWhereInput {
@@ -646,9 +583,6 @@ export interface Personalmsg {
   height: Int;
   weight: Int;
   status: Int;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export interface PersonalmsgPromise extends Promise<Personalmsg>, Fragmentable {
@@ -661,9 +595,6 @@ export interface PersonalmsgPromise extends Promise<Personalmsg>, Fragmentable {
   weight: () => Promise<Int>;
   status: () => Promise<Int>;
   user: <T = UserPromise>() => T;
-  ptadd: () => Promise<String>;
-  privatekey: () => Promise<String>;
-  publickey: () => Promise<String>;
 }
 
 export interface PersonalmsgSubscription
@@ -678,9 +609,6 @@ export interface PersonalmsgSubscription
   weight: () => Promise<AsyncIterator<Int>>;
   status: () => Promise<AsyncIterator<Int>>;
   user: <T = UserSubscription>() => T;
-  ptadd: () => Promise<AsyncIterator<String>>;
-  privatekey: () => Promise<AsyncIterator<String>>;
-  publickey: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PersonalmsgConnection {
@@ -794,9 +722,6 @@ export interface PersonalmsgPreviousValues {
   height: Int;
   weight: Int;
   status: Int;
-  ptadd?: String;
-  privatekey?: String;
-  publickey?: String;
 }
 
 export interface PersonalmsgPreviousValuesPromise
@@ -810,9 +735,6 @@ export interface PersonalmsgPreviousValuesPromise
   height: () => Promise<Int>;
   weight: () => Promise<Int>;
   status: () => Promise<Int>;
-  ptadd: () => Promise<String>;
-  privatekey: () => Promise<String>;
-  publickey: () => Promise<String>;
 }
 
 export interface PersonalmsgPreviousValuesSubscription
@@ -826,9 +748,6 @@ export interface PersonalmsgPreviousValuesSubscription
   height: () => Promise<AsyncIterator<Int>>;
   weight: () => Promise<AsyncIterator<Int>>;
   status: () => Promise<AsyncIterator<Int>>;
-  ptadd: () => Promise<AsyncIterator<String>>;
-  privatekey: () => Promise<AsyncIterator<String>>;
-  publickey: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserConnection {

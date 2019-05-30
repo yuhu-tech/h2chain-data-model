@@ -59,9 +59,6 @@ type Personalmsg {
   weight: Int!
   status: Int!
   user: User!
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 type PersonalmsgConnection {
@@ -79,9 +76,6 @@ input PersonalmsgCreateInput {
   weight: Int!
   status: Int!
   user: UserCreateOneWithoutPersonalmsgInput!
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 input PersonalmsgCreateOneWithoutUserInput {
@@ -97,9 +91,6 @@ input PersonalmsgCreateWithoutUserInput {
   height: Int!
   weight: Int!
   status: Int!
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 type PersonalmsgEdge {
@@ -124,12 +115,6 @@ enum PersonalmsgOrderByInput {
   weight_DESC
   status_ASC
   status_DESC
-  ptadd_ASC
-  ptadd_DESC
-  privatekey_ASC
-  privatekey_DESC
-  publickey_ASC
-  publickey_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -145,9 +130,6 @@ type PersonalmsgPreviousValues {
   height: Int!
   weight: Int!
   status: Int!
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 type PersonalmsgSubscriptionPayload {
@@ -177,9 +159,6 @@ input PersonalmsgUpdateInput {
   weight: Int
   status: Int
   user: UserUpdateOneRequiredWithoutPersonalmsgInput
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 input PersonalmsgUpdateManyMutationInput {
@@ -190,9 +169,6 @@ input PersonalmsgUpdateManyMutationInput {
   height: Int
   weight: Int
   status: Int
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 input PersonalmsgUpdateOneWithoutUserInput {
@@ -212,9 +188,6 @@ input PersonalmsgUpdateWithoutUserDataInput {
   height: Int
   weight: Int
   status: Int
-  ptadd: String
-  privatekey: String
-  publickey: String
 }
 
 input PersonalmsgUpsertWithoutUserInput {
@@ -312,48 +285,6 @@ input PersonalmsgWhereInput {
   status_gt: Int
   status_gte: Int
   user: UserWhereInput
-  ptadd: String
-  ptadd_not: String
-  ptadd_in: [String!]
-  ptadd_not_in: [String!]
-  ptadd_lt: String
-  ptadd_lte: String
-  ptadd_gt: String
-  ptadd_gte: String
-  ptadd_contains: String
-  ptadd_not_contains: String
-  ptadd_starts_with: String
-  ptadd_not_starts_with: String
-  ptadd_ends_with: String
-  ptadd_not_ends_with: String
-  privatekey: String
-  privatekey_not: String
-  privatekey_in: [String!]
-  privatekey_not_in: [String!]
-  privatekey_lt: String
-  privatekey_lte: String
-  privatekey_gt: String
-  privatekey_gte: String
-  privatekey_contains: String
-  privatekey_not_contains: String
-  privatekey_starts_with: String
-  privatekey_not_starts_with: String
-  privatekey_ends_with: String
-  privatekey_not_ends_with: String
-  publickey: String
-  publickey_not: String
-  publickey_in: [String!]
-  publickey_not_in: [String!]
-  publickey_lt: String
-  publickey_lte: String
-  publickey_gt: String
-  publickey_gte: String
-  publickey_contains: String
-  publickey_not_contains: String
-  publickey_starts_with: String
-  publickey_not_starts_with: String
-  publickey_ends_with: String
-  publickey_not_ends_with: String
   AND: [PersonalmsgWhereInput!]
   OR: [PersonalmsgWhereInput!]
   NOT: [PersonalmsgWhereInput!]
