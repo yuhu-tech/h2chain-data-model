@@ -168,6 +168,8 @@ export type PersonalmsgOrderByInput =
   | "weight_DESC"
   | "status_ASC"
   | "status_DESC"
+  | "nickname_ASC"
+  | "nickname_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -201,6 +203,7 @@ export interface PersonalmsgCreateWithoutUserInput {
   height: Int;
   weight: Int;
   status: Int;
+  nickname?: String;
 }
 
 export interface UserUpsertWithoutPersonalmsgInput {
@@ -245,6 +248,7 @@ export interface PersonalmsgUpdateWithoutUserDataInput {
   height?: Int;
   weight?: Int;
   status?: Int;
+  nickname?: String;
 }
 
 export interface PersonalmsgCreateInput {
@@ -256,6 +260,7 @@ export interface PersonalmsgCreateInput {
   weight: Int;
   status: Int;
   user: UserCreateOneWithoutPersonalmsgInput;
+  nickname?: String;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -393,6 +398,20 @@ export interface PersonalmsgWhereInput {
   status_gt?: Int;
   status_gte?: Int;
   user?: UserWhereInput;
+  nickname?: String;
+  nickname_not?: String;
+  nickname_in?: String[] | String;
+  nickname_not_in?: String[] | String;
+  nickname_lt?: String;
+  nickname_lte?: String;
+  nickname_gt?: String;
+  nickname_gte?: String;
+  nickname_contains?: String;
+  nickname_not_contains?: String;
+  nickname_starts_with?: String;
+  nickname_not_starts_with?: String;
+  nickname_ends_with?: String;
+  nickname_not_ends_with?: String;
   AND?: PersonalmsgWhereInput[] | PersonalmsgWhereInput;
   OR?: PersonalmsgWhereInput[] | PersonalmsgWhereInput;
   NOT?: PersonalmsgWhereInput[] | PersonalmsgWhereInput;
@@ -414,6 +433,7 @@ export interface PersonalmsgUpdateInput {
   weight?: Int;
   status?: Int;
   user?: UserUpdateOneRequiredWithoutPersonalmsgInput;
+  nickname?: String;
 }
 
 export interface PersonalmsgUpdateManyMutationInput {
@@ -424,6 +444,7 @@ export interface PersonalmsgUpdateManyMutationInput {
   height?: Int;
   weight?: Int;
   status?: Int;
+  nickname?: String;
 }
 
 export interface PersonalmsgSubscriptionWhereInput {
@@ -583,6 +604,7 @@ export interface Personalmsg {
   height: Int;
   weight: Int;
   status: Int;
+  nickname?: String;
 }
 
 export interface PersonalmsgPromise extends Promise<Personalmsg>, Fragmentable {
@@ -595,6 +617,7 @@ export interface PersonalmsgPromise extends Promise<Personalmsg>, Fragmentable {
   weight: () => Promise<Int>;
   status: () => Promise<Int>;
   user: <T = UserPromise>() => T;
+  nickname: () => Promise<String>;
 }
 
 export interface PersonalmsgSubscription
@@ -609,6 +632,7 @@ export interface PersonalmsgSubscription
   weight: () => Promise<AsyncIterator<Int>>;
   status: () => Promise<AsyncIterator<Int>>;
   user: <T = UserSubscription>() => T;
+  nickname: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PersonalmsgConnection {
@@ -722,6 +746,7 @@ export interface PersonalmsgPreviousValues {
   height: Int;
   weight: Int;
   status: Int;
+  nickname?: String;
 }
 
 export interface PersonalmsgPreviousValuesPromise
@@ -735,6 +760,7 @@ export interface PersonalmsgPreviousValuesPromise
   height: () => Promise<Int>;
   weight: () => Promise<Int>;
   status: () => Promise<Int>;
+  nickname: () => Promise<String>;
 }
 
 export interface PersonalmsgPreviousValuesSubscription
@@ -748,6 +774,7 @@ export interface PersonalmsgPreviousValuesSubscription
   height: () => Promise<AsyncIterator<Int>>;
   weight: () => Promise<AsyncIterator<Int>>;
   status: () => Promise<AsyncIterator<Int>>;
+  nickname: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserConnection {

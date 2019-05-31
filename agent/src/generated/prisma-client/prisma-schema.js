@@ -59,6 +59,7 @@ type Personalmsg {
   weight: Int!
   status: Int!
   user: User!
+  nickname: String
 }
 
 type PersonalmsgConnection {
@@ -76,6 +77,7 @@ input PersonalmsgCreateInput {
   weight: Int!
   status: Int!
   user: UserCreateOneWithoutPersonalmsgInput!
+  nickname: String
 }
 
 input PersonalmsgCreateOneWithoutUserInput {
@@ -91,6 +93,7 @@ input PersonalmsgCreateWithoutUserInput {
   height: Int!
   weight: Int!
   status: Int!
+  nickname: String
 }
 
 type PersonalmsgEdge {
@@ -115,6 +118,8 @@ enum PersonalmsgOrderByInput {
   weight_DESC
   status_ASC
   status_DESC
+  nickname_ASC
+  nickname_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -130,6 +135,7 @@ type PersonalmsgPreviousValues {
   height: Int!
   weight: Int!
   status: Int!
+  nickname: String
 }
 
 type PersonalmsgSubscriptionPayload {
@@ -159,6 +165,7 @@ input PersonalmsgUpdateInput {
   weight: Int
   status: Int
   user: UserUpdateOneRequiredWithoutPersonalmsgInput
+  nickname: String
 }
 
 input PersonalmsgUpdateManyMutationInput {
@@ -169,6 +176,7 @@ input PersonalmsgUpdateManyMutationInput {
   height: Int
   weight: Int
   status: Int
+  nickname: String
 }
 
 input PersonalmsgUpdateOneWithoutUserInput {
@@ -188,6 +196,7 @@ input PersonalmsgUpdateWithoutUserDataInput {
   height: Int
   weight: Int
   status: Int
+  nickname: String
 }
 
 input PersonalmsgUpsertWithoutUserInput {
@@ -285,6 +294,20 @@ input PersonalmsgWhereInput {
   status_gt: Int
   status_gte: Int
   user: UserWhereInput
+  nickname: String
+  nickname_not: String
+  nickname_in: [String!]
+  nickname_not_in: [String!]
+  nickname_lt: String
+  nickname_lte: String
+  nickname_gt: String
+  nickname_gte: String
+  nickname_contains: String
+  nickname_not_contains: String
+  nickname_starts_with: String
+  nickname_not_starts_with: String
+  nickname_ends_with: String
+  nickname_not_ends_with: String
   AND: [PersonalmsgWhereInput!]
   OR: [PersonalmsgWhereInput!]
   NOT: [PersonalmsgWhereInput!]

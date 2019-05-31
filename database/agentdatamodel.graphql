@@ -16,6 +16,7 @@ type Personalmsg {
   status:Int!
   #1 == student and 2 == !student
   user: User!
+  nickname:String
 }
 
 
