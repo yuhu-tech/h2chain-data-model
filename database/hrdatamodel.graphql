@@ -32,3 +32,9 @@ type Attention{
   userid: String!
   attention: String!
 }
+
+type Cooperation {
+  id: ID! @unique
+  adviserid: String!
+  hotelid: String!
+}
