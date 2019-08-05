@@ -1,30 +1,30 @@
 type User {
-  id: ID! @unique
-  name: String!
-  email: String! @unique
-  phone: String
-  password: String!
-  profile : Profile
-  wechat: String
+	id: ID! @unique
+	name: String!
+	email: String! @unique
+	phone: String
+	password: String!
+	profile : Profile
+	wechat: String
 }
 
 type Profile {
-  id: ID! @unique
-  phone: String! @unique
-  companyname: String
-  introduction:String
-  user :  User!
-  advisercer:String!
-  adviseradd:String
-  publickey:String
-  privatekey:String
+	id: ID! @unique
+	phone: String! @unique
+	companyname: String
+	introduction: String
+	user:  User!
+	advisercer: String!
+	adviseradd: String
+	publickey: String
+	privatekey: String
 }
 
 
-type Workcontent{
-  id: ID! @unique
-  userid : String!
-  workcontent : String!
+type Workcontent {
+	id: ID! @unique
+	userid : String!
+	workcontent : String!
 }
 
 type Attention{

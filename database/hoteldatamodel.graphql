@@ -1,66 +1,63 @@
 type User {
-  id: ID! @unique
-  name: String!
-  email: String! @unique
-  password: String!
-  profile: Profile
-  wechat: String
+	id: ID! @unique
+	name: String!
+	email: String! @unique
+	password: String!
+	profile: Profile
+	wechat: String
 }
 
 
-type Profile{
-  id: ID! @unique
-  cover: [String]!
-  phone: String!
-  name: String!
-  occupation:String!
-  latitude: Float!
-  longitude:Float!
-  address:String!
-  introduction:String!
-  user: User!
-  hotelcer: String!
-  hoteladd:String
-  privatekey:String
-  publickey:String
+type Profile {
+	id: ID! @unique
+	cover: [String]!
+	phone: String!
+	name: String!
+	occupation: String!
+	latitude: Float!
+	longitude: Float!
+	address: String!
+	introduction: String!
+	user: User!
+	hotelcer: String!
+	hoteladd: String
+	privatekey: String
+	publickey: String
 }
 
 
-type Occupation{
-  id: ID! @unique
-  occupations:[String]
+type Occupation {
+	id: ID! @unique
+	occupations: [String]
 }
 
 
 type Balance {
-  id: ID! @unique
-  xuid: String
-  balance:Int
+	id: ID! @unique
+	xuid: String
+	balance: Int
 }
 
 type Tx {
-  id: ID! @unique
-  from: String!
-  to: String!
-  value: Int!
-  hash: String!
-  timestamp:Int!
-  reason: String
+	id: ID! @unique
+	from: String!
+	to: String!
+	value: Int!
+	hash: String!
+	timestamp: Int!
+	reason: String
 }
 
 type Contract {
-  id: ID! @unique
-  contractaddress:String
-  key:String
-  date:Int
-  occupation:Int
-  blocknumber:Int
-  hash:String
-  hotelid:String
-  adviserid:String
-  ptid:String
-  orderid:String
+	id: ID! @unique
+	contractaddress: String
+	key: String
+	date: Int
+	occupation: Int
+	blocknumber: Int
+	hash: String
+	hotelid: String
+	adviserid: String
+	ptid: String
+	orderid: String
 }
-
-
-
